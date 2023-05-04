@@ -1,0 +1,10 @@
+(SELECT  b.tipo_ide,replace(b.num_ide,',','') as ide,'',
+(case when b.cod_afilsgsss ='C' then 1 when b.cod_afilsgsss ='S' then 2 when b.cod_afilsgsss ='V' then 3 else 5 end) as regimen,
+b.apellido1,b.apellido2,b.nombre1,b.nombre2,edad,
+(case when tipo_edad ='A' then 1 when tipo_edad ='M' then 2 when tipo_edad ='D' then 3 else 1 end) as tip_edad,
+genero,substr(cod_municipio,1,2) as cod_dep,substr(cod_municipio,3,3)as cod_mun,(case when tipzona_res>'' then tipzona_res else 'U' end) as tipo_zona
+ FROM tbladm_admisiones b
+ LEFT JOIN mae_responsables c ON codreg_responsable=b.cod_responsable
+ WHERE fec_egreso between '2021-10-01' AND '2022-10-24'and b.servicio <> 'C'
+	AND (b.sede_ingreso='SEDE AMERICAS' OR sede = 'SEDE AMERICAS')
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14 ORDER BY 2)  TO 'C:/RIPS/US.txt' DELIMITER ',';

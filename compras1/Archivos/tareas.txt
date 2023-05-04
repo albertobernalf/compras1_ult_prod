@@ -1,0 +1,22 @@
+Tareas: comprasTable
+
+
+1. Rutina Correo
+2. Los deletes se bloquean cuano borra mas de uno. Verificar. Sino crear un nuevo programa con datas Tables
+3. Combo areas de pierde
+4. Pedir clave administrador y Activar el servicio apache, subir 8085. Ingresar a la .224 y crear el nuevo sitio web ejemplo 8085 que apunte a pruebas por el momento...
+5. ojo con las cosas quemadas en el software como estado_id = 3 aprobado, etc. Revizar todo el codigo. Valores default = 1, etc OJOO IMPORTANTE
+6. LAS FORMULAS DE SUMAN EN CAMPOS VALOR TOTAL, PARCIAL
+7. oc en excel valor bruto - descuento = parcial iva 19% hacer resta parcial -* iva = total
+8. Cuando edito y grabo sin ningun cambio se pierde el adjunto ...
+9. Pruebas generales varias
+10. Colocar comntrol cuando no hay items grabados en la impresion de la orden de compra 
+11. De pronto el tamaño de los datatables a ver como se pueden encoger no es prioritario cada coordinador no es que vaya a tener muchas solicitudes
+12. Probar el scroll de un datatable
+13. PROBAR SON CONEXION A internet
+	
+    bueno hay trabajito para toda la semana . De lo que hay debe estar fino todo OK. 
+
+
+
+       

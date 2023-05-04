@@ -1,0 +1,79 @@
+{%extends 'Reportes/cabeza.html'%}
+{% load static %}
+
+
+{%block content%}
+<script>
+	function cancelar()
+	{
+
+
+        var sedeSeleccionada = document.getElementById("sedeSeleccionada").value;
+        var username = document.getElementById("username").value;
+        var nombreUsuario = document.getElementById("nombreUsuario").value;
+        var nombreSede = document.getElementById("nombreSede").value;
+        var perfil = document.getElementById("Perfil").value;
+
+		var apasar =  username + ',' + sedeSeleccionada+ ',' + nombreUsuario + ',' + nombreSede+ ',' + perfil;
+
+		window.location.reload(http://localhost:8086/tickets/)
+
+
+	}
+</script>
+
+
+
+<div class="center">
+   <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+
+                    </div>
+                    <div class="card-body">
+                        {{form.errors}}
+<form method="POST" novalidate class="card">
+
+	<input type="hidden" class="form-control" id="username" name="username" value={{Username}}>
+	<input type="hidden" class="form-control" id="sedeSeleccionada" name="sedeSeleccionada" value={{SedeSeleccionada}}>
+	<input type="hidden" class="form-control" id="nombreUsuario" name="nombreUsuario" value={{NombreUsuario}}>
+	<input type="hidden" class="form-control" id="nombreSede" name="nombreSede" value={{NombreSede}}>
+	<input type="hidden" class="form-control" id="perfil" name="perfil" value={{Perfil}}>
+
+	<center>
+ 	<h2>Cambio Contraseña</h2>
+		</center>
+
+	<label for id="ccntrasena">Nueva Contraseña:</label>
+	<br>
+	<input type="text" id="comtrasena" name="contrasena" value="{{form.clave_usuario}}"/>
+	<br>
+
+	<div class="form-buttons">
+		<input type="submit" value="Grabar" class="btn btn-primary"/>
+		<a  class="btn btn-outline" id="cancelar" name="cancelar" onclick="cancelar()">Cancel</a>
+	</div>
+
+
+</form>
+                    </div>
+                    <div class="card-footer"  >
+                    <div class="row"  >
+                           <div class="col-md-12" >
+
+	                    </div>
+                        </div>
+
+                   </div>
+
+             </div>
+         </div>
+   </div>
+</div>
+
+
+{%endblock content%}
+{% block final %}
+final
+{% endblock %}
