@@ -128,3 +128,103 @@ span1 {
   background-color: red;
   color: white;
 }
+
+.tablaSolicitudesConsulta{
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.tablaSolicitudesConsulta th {
+    font-size: 10px;
+     background-color:#55caf3;
+     font-weight: bold;
+  }
+
+.tablaSolicitudesConsulta td {
+    font-family:Arial ;
+    font-size: 9px;
+    font-weight: bold;
+    width:1px;
+  }
+
+.tablaSolicitudesConsulta  tr  {
+     height:1px ;
+ }
+
+.tablaAlmacenDetalle{
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.tablaAlmacenDetalle th {
+    font-size: 10px;
+     background-color:#55caf3;
+     font-weight: bold;
+  }
+
+.tablaAlmacenDetalle td {
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+    width:1px;
+  }
+
+.tablaAlmacenDetalle  tr  {
+     height:1px ;
+ }
+
+.tablaValidacionDetalle{
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.tablaValidacionDetalle th {
+    font-size: 10px;
+     background-color:#55caf3;
+     font-weight: bold;
+  }
+
+.tablaValidacionDetalle td {
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+    width:1px;
+  }
+
+.tablaValidacionDetalle  tr  {
+     height:1px ;
+ }
+
+
+.tablaSolicitud{
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.tablaSolicitud th {
+    font-size: 10px;
+     background-color:#55caf3;
+     font-weight: bold;
+  }
+
+.tablaSolicitud td {
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+    width:1px;
+  }
+
+.tablaSolicitud  tr  {
+     height:1px ;
+ }
+
+.scrollable5
+{
+    width: 1300px;
+    height: 300px;
+    overflow:scroll;
+}

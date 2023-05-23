@@ -656,7 +656,8 @@ class PostStoreReportesConsulta(TemplateView):
             l22.font = fuente1
 
             print("Armo pah archivo")
-            archivo = 'c:OC_' + str(idCompra) + '.xlsx'
+            archivo = 'c:\Apache24\OrdenesCompra\OC_' + str(idCompra) + '.xlsx'
+            #archivo = 'c:OC_' + str(idCompra) + '.xlsx'
 
             print("Archivo =", archivo)
 

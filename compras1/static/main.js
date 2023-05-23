@@ -3,7 +3,10 @@ var $ = jQuery;
 
 var datavta;
 var seriali = new Array();
-var serialiSol = new Array();
+// var serialiSol = new Array();
+
+//var  serialiSol= new Array();
+var  serialiSol= [];
 var serialiSol1 = new Array();
 var serialiSol1Bak = new Array();
 var serialiSolBak = new Array();
@@ -50,7 +53,17 @@ function task() {
 
 function guardarSolicitud()
 {
-    // alert("Voy a grabar1 serialisol =" + serialiSol);
+
+    console.log("Entro con estop serialisol para guardar");
+		console.log("Estos son los items del array : ")
+
+           for (var i = 0; i < serialiSol.length; i++) {
+            console.log("elemento ",  i);
+            console.log(serialiSol[i]);
+
+            }
+
+
 
 
   username = document.getElementById("username").value;
@@ -70,7 +83,9 @@ function guardarSolicitud()
                     var inicio = 0;
                     var transitorio = {};
 
-                    var nFilas = $("#tablaSolicitud tr").length;
+                    // var nFilas = $("#tablaSolicitud tr").length;
+                    var nFilas = serialiSol.length;
+
 
             if (area == '')
                 {
@@ -79,7 +94,7 @@ function guardarSolicitud()
                  preventDefault();
                 }
 
-            if (nFilas <= 1)
+           if (nFilas == 0)
                 {
 
                 document.getElementById("mensajes").innerHTML = "Favor Ingresar items";
@@ -88,41 +103,10 @@ function guardarSolicitud()
 
 
                     ///  Nueva Rutina
-                      for (const pair of serialiSol.entries())
-                      {
-
-                            if ( pair[0] == '0')
-                              {
-
-
-                                transitorio = pair[1]
-                                //alert("hasta el momento transitorio = " + transitorio )
-                                 for (const pair2 of transitorio.entries())
-                                    {
-
-                                     jsonSol[pair2[0]] = pair2[1];
-                                     inicio = inicio +1
-                                     if (inicio == 6)
-                                     {
-                                            // alert("Entro a empaquetar una fila");
-
-                                             jsonDefSol.push(JSON.stringify (jsonSol ));
-                                        // alert("subo ajsondefsol  =" +jsonDefSol )
-                                        delete jsonSol['descripcion'];
-                                        delete jsonSol['tipo'];
-                                        delete jsonSol['producto'];
-                                        delete jsonSol['presentacion'];
-                                        delete jsonSol['cantidad'];
-                                        delete jsonSol['justificacion'];
-                                        inicio=0;
-                                     }
-                                     // alert("pair2 =" +pair2[1] )
-                                   }
-                               }
-                        }
-                     // alert("jsondefSol = " + JSON.stringify (jsonDefSol));
-        	         var jsonDefSol1 = JSON.stringify(jsonDefSol);
-
+                       ///  FIN   Nueva Rutina
+                       var jsonDefSol1 = JSON.stringify(serialiSol);
+        	         // var jsonDefSol1 = JSON.stringify(jsonDefSol);
+                    //  alert(" se fue estop jsonDefSol1 = " + JSON.stringify (jsonDefSol1));
 
 
                     /// Fin nueva rutina
@@ -309,7 +293,7 @@ for (var i = 0, row; row = resume_table.rows[i]; i++) {
               //  window.location.reload()
                 document.getElementById("mensajes").innerHTML = respuesta;
 
-                alert("LISTO")
+              //  alert("LISTO")
                     },
 	   		    error: function (request, status, error) {
 	   	    	}
@@ -591,7 +575,7 @@ for (var i = 0, row; row = resume_table.rows[i]; i++) {
 
 function validaSolicitud()
 {
-  alert("Voy a  validar Solictud");
+  // alert("Voy a  validar Solictud");
   username = document.getElementById("username").value;
   sedeSeleccionada=  document.getElementById("sedeSeleccionada").value;
   nombreUsuario = document.getElementById("nombreUsuario").value;
@@ -603,11 +587,11 @@ function validaSolicitud()
   area = document.getElementById("areas").value;
 
 
-  alert(nombreUsuario);
-  alert(fecha);
-  alert(nombreSede);
-  alert(area);
-  alert(solicitudId);
+ // alert(nombreUsuario);
+ // alert(fecha);
+ // alert(nombreSede);
+ // alert(area);
+ // alert(solicitudId);
 
 
        $.ajax({
@@ -639,6 +623,7 @@ function validaSolicitud()
  };
 
  $("#btnAdicion").click(function(){
+
 
 
     var descripcion =  document.getElementById("descripcion").value;
@@ -708,7 +693,31 @@ function validaSolicitud()
 
 		tds += '</tr>';
 
-		$("#tablaSolicitud").append(tds);
+		if (envioSol.has("descripcion") == true)
+		{
+		    envioSol.delete('descripcion');
+		}
+        if (envioSol.has("tipo") == true)
+		{
+		    envioSol.delete('tipo');
+		}
+		if (envioSol.has("producto") == true)
+		{
+		    envioSol.delete('producto');
+		}
+		if (envioSol.has("presentacion") == true)
+		{
+		    envioSol.delete('presentacion');
+		}
+		if (envioSol.has("cantidad") == true)
+		{
+		    envioSol.delete('cantidad');
+		}
+		if (envioSol.has("justificacion") == true)
+		{
+		    envioSol.delete('justificacion');
+		}
+
 
         envioSol.append('descripcion' , descripcionNombre);
         envioSol.append('tipo' , tipoNombre);
@@ -717,17 +726,51 @@ function validaSolicitud()
         envioSol.append('cantidad' , cantidad);
         envioSol.append('justificacion' , justificacion);
 
-        serialiSol.push(envioSol);
+            console.log("esto viene en enviosol " ,  envioSol.get('producto'));
+         console.log("esto viene en enviosol " ,  envioSol.get('cantidad'));
 
-        addAEvent();
+        serialiSol.push({"descripcion": descripcionNombre,
+                        "tipo" :tipoNombre,
+                        "producto" : producto,
+                        "presentacion" : presentacionNombre,
+                        "cantidad" : cantidad,
+                        "justificacion" : justificacion}
+        );
+
+
+        $("#tablaSolicitud").append(tds);
+
+        console.log("Estos son los items del array : ")
+
+           for (var i = 0; i < serialiSol.length; i++) {
+            console.log("elemento ",  i);
+            console.log(serialiSol[i]);
+
+            }
+
+        // Aqui elimino para la siguiente :
+
+
+
+        // fin elimino
+
+
+       addAEvent();
 
    });
 
+
+
+//function addAEvent(){
 function addAEvent(){
+
+
 
 			    $('#tablaSolicitud').unbind();
 
 				  $('#tablaSolicitud').on('click','tr td', function(evt){
+
+
 
 				        var target,valorSeleccionado;
     			        var column_num = parseInt( $(this).index() + 1 ) ;
@@ -738,87 +781,30 @@ function addAEvent(){
 
 					        if(column_num == 7)
 					        	{
-                          //      alert("row_num =" + row_num);
-
-                                console.log("serialiSol antes de borrar");
-                                console.log(serialiSol);
-                               // serialiSol.splice((row_num-1) , 1)
-
-					        	$(this).closest('tr').remove();
 
 
-                                //  event.preventDefault();
+					        	// $(this).closest('tr').remove();
+					        	// $("#tablaSolicitud tr").remove();
+					        	$(this).closest('#tablaSolicitud tr').remove();
 
 
-    					        var voy = 0;
+					        	 var nFilas = $("#tablaSolicitud tr").length;
 
-    					        var desdeBorra = (row_num-1) * 6 + 1;
-
-    					        if ((row_num-1) == 0)
-    					            {
-    					             var hastaBorra = 6;
-    					             }
-    					        else
-   					               {
-                                    var hastaBorra =desdeBorra + 5;
-                                    }
-
-					         console.log("Asi quedo serialiSol Nuevo");
-                             console.log(serialiSol);
-                             serialiSol.forEach((numero, index, arreglo) => {
-                                        console.log(arreglo);
-                                //        alert ("index = " + index);
-
-                                        if (index==0)
-                                        {
-
-                                        serialiSolBak1 = serialiSol[0];
+					        	serialiSol.splice(row_num-1, 1);
 
 
-                                       // serialiSolBak1.forEach((numero, index, arreglo) => {
-                                       //   if (index != (row_num-1))
-                                       //   {
-                                                  for (const pair of serialiSolBak1.entries())
-                                                        {
-                                                        voy = voy +1;
-                                                        if (voy>=desdeBorra && voy<=hastaBorra )
-                                                        {
-                                                                    console.log("No aplica");
+                                console.log("En toria ya lo borre y me quedaron ");
+					        	 for (var i = 0; i < serialiSol.length; i++) {
+                                          console.log("elemento ",  i);
+                                         console.log(serialiSol[i]);
 
-                                                            }
-                                                            else
-                                                            {
-                                                      //       alert("pair[0] =" + pair[0] + "- " +pair[1])
-                                                        envioSolBak.append(pair[0], pair[1])
-                                                         console.log(`${pair[0]}, ${pair[1]}`);
-                                                            }
-                                                        }
-                                                    serialiSolBak.push(envioSolBak);
-                                       //     } // termina If Interno
-                                       //      }); // Termina For each Interno
-
-                                        } // Termina IF
-                                 });
+                                      }
 
 
-                               console.log('ESTO QUEDO : ')
-                               serialiSolBak.forEach((numero, index, arreglo) => {
+                                event.preventDefault();
+                                 }  // fin columna = 7
 
-                                         for (const pair of numero.entries())
-                                                 {
-                                             console.log(`${pair[0]}, ${pair[1]}`);
-                                               }
-
-                                }); // Termina el For Each
-                                serialiSol = serialiSolBak;
-
-                             // alert ("serialisol queda " + JSON.stringify(serialiSol));
-                             alert("Salgo de rurina");
-                       } // Fin ifcolumn = 7
-
-                    event.preventDefault();
-
-				}); // Fin TablaSolicitud evento
+				                }); // Fin TablaSolicitud evento
 } // Fin function  AddEvent
 
 }); // Fin document_ready

@@ -4,7 +4,7 @@
 
 {%block content%}
 <script>
-	function cancelar()
+	function cancelart()
 	{
 
 
@@ -12,13 +12,12 @@
         var username = document.getElementById("username").value;
         var nombreUsuario = document.getElementById("nombreUsuario").value;
         var nombreSede = document.getElementById("nombreSede").value;
-        var perfil = document.getElementById("Perfil").value;
+        var perfil = document.getElementById("perfil").value;
 
 		var apasar =  username + ',' + sedeSeleccionada+ ',' + nombreUsuario + ',' + nombreSede+ ',' + perfil;
 
-		window.location.reload(http://localhost:8086/tickets/)
 
-
+		 $(location).attr('href',  '/medicalCompras/' );
 	}
 </script>
 
@@ -52,9 +51,9 @@
 
 	<div class="form-buttons">
 		<input type="submit" value="Grabar" class="btn btn-primary"/>
-		<a  class="btn btn-outline" id="cancelar" name="cancelar" onclick="cancelar()">Cancel</a>
-	</div>
+		<input type="button" value="Cancel" id="cancela" name="cancela" onclick=cancelart()>
 
+	</div>
 
 </form>
                     </div>

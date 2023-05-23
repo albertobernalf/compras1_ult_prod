@@ -189,13 +189,29 @@ window.onload = function(){
              <br>
 
         <!-- Inicia sexta Fila -->
-        <div class="row" >
-            <div class=" col-lg-4 "></div>
+        <div class="row">
+
+            <div class=" col-lg-2 "></div>
+
+            <div class=" col-lg-2 ">
+                <input type="button"  id="btnAdicion" name="btnAdicion" value="Adicionar"> </input>
+
+            </div>
+             <div class=" col-lg-4 "></div>
+             <div class=" col-lg-2 ">
+            <span id="mensajes" name="mensajes" size="50px" style="color: red"> </span>
+            </div>
+
+
             <div class=" col-lg-1 ">
-                <input type="button" class="button" size="30px" id="btnAdicion" name="btnAdicion" value="Adicionar"> </input>
-                </div>
-              <div class=" col-lg-4 "></div>
-         </div>
+              <input type="button"  heigth="200px" id="btnSolCrea" name="btnSolCrea" value="Guardar" onclick="guardarSolicitud()"></input>
+            </div>
+            <div class=" col-lg-1 "></div>
+
+
+
+
+        </div>
         <!-- Fin sexta Fila -->
 
 
@@ -211,9 +227,9 @@ window.onload = function(){
 
     <div class="row">
         <div class="col-lg-12">
-            <div id="noTomar1" class="scrollable" align="center">
+            <div id="noTomar1" class="scrollable5" align="center">
                 <center>
-                    <table cellspacing="0"  class="table  table-bordered table-fixed " id="tablaSolicitud" >
+                    <table cellspacing="0"  class="table  table-bordered table-fixed  tablaSolicitud" id="tablaSolicitud" >
 
                         <thead>
                         <tr>
@@ -245,16 +261,13 @@ window.onload = function(){
     <div class="row"  >
         <div class=" col-lg-5 "></div>
         <div class=" col-lg-1 ">
-            <input type="button" class="button1" heigth="200px" id="btnSolCrea" name="btnSolCrea" value="Enviar"
-                   onclick="guardarSolicitud()"></input>
+
 
             </div>
             <div class=" col-lg-3 ">
 
             </div>
-        <div class=" col-lg-3 ">
-            <span id="mensajes" name="mensajes" size="50px" style="color: red"> </span>
-        </div>
+
         <!-- Fin sexta Fila -->
     </div>
 
