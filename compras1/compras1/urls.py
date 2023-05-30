@@ -109,6 +109,16 @@ urlpatterns = [
     path('ComprasConsulta/descargaArchivoAjax/<int:pk>', views.Simple_Upload, name='post_descargaArchivo'),
     path('ComprasConsulta/descargaArchivoAjax', views.Simple_Upload, name='post_descargaArchivo'),
 
+    # Anular solicitud
+
+    path('anular_solicitud/<int:pk>,<str:item>', views.AnularSolicitud, name='anular_solicitud'),
+    path('anular_solicitud', views.AnularSolicitud, name='anular_solicitud'),
+
+    # Anular Orden Compra
+
+    path('anular_ordenCompra/<int:ordenCompra>', views.AnularOrdenCompra, name='anular_ordenCompra'),
+    path('anular_ordenCompra', views.AnularOrdenCompra, name='anular_ordenCompra'),
+
 ]
 
 if settings.DEBUG:

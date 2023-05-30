@@ -42,6 +42,7 @@ window.onload = function(){
 
 
 
+
 <input type="hidden" class="form-control" id="username" name="username" value={{ Username }}>
 <input type="hidden" class="form-control" id="sedeSeleccionada" name="sedeSeleccionada" value={{ SedeSeleccionada }}>
 <input type="hidden" class="form-control" id="nombreUsuario" name="nombreUsuario" value={{NombreUsuario}}>
@@ -93,7 +94,7 @@ window.onload = function(){
 
                 <!-- Seria desde aqui para controlar la pantalla del reporte Es un row bootstrap-->
                 {% if NumeroReporte == '1' %}
-                <div class="form-row">
+                 <!-- <div class="form-row">  -->
 
 
 
@@ -127,7 +128,7 @@ window.onload = function(){
                         <input type="hidden" class="form-control" id="numeroReporte" name="numeroReporte"
                                value="{{NumeroReporte}}">
                     </div>
-                </div>
+                <!-- </div>  -->
                 {% endif %}
                 <!-- Fin Seria desde aqui para controlar la pantalla del reporte -->
 
@@ -209,24 +210,31 @@ window.onload = function(){
                 {% endif %}
 
 
-                <div class="row " style=" width:700px; height: 40px;">
+                <div class="row " style=" width:900px; height: 40px;">
 
                     <div class="col-lg-4"> </div>
                     <div class="col-lg-8">
                         <br>
+                           <br>
+                           <br>
+
                         <input type="radio" name="tipoArchivo" onclick="check(this.value)" value="excel"></input>
                         <img src="{% static '/img/EXCEL.JPG' %}" class="figure-img img-fluid rounded"
                              style="width:75px;height:50px;" alt="...">
 
                         {% if NumeroReporte == '1' or NumeroReporte == '2' or NumeroReporte == '4' or NumeroReporte == '3' %}
 
+                        <!--
                         <input type="radio" name="tipoArchivo" onclick="check(this.value)" value="pdf"></input>
                         <img src="{% static '/img/PDF1.JPG' %}" class="figure-img img-fluid rounded"
                              style="width:75px;height:50px;" alt="...">
+                             -->
 
                         <input type="radio" name="tipoArchivo" onclick="check(this.value)" value="csv"></input>
                         <img src="{% static '/img/CSV.JPG' %}" class="figure-img img-fluid rounded"
-                             style="width:75px;height:50px;" alt="...">
+                             style="    width:75px;height:50px;" alt="...">
+
+
 
                         <input type="radio" name="tipoArchivo" onclick="check(this.value)" value="grilla"></input>
                         <img src="{% static '/img/VISUALIZAR.JPG' %}" class="figure-img img-fluid rounded"
@@ -237,16 +245,27 @@ window.onload = function(){
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group col-md-4">
+               <!--  <div class="form-row">  -->
+                    <div class="form-group col-md-5">
 
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-7">
                         <br>
                         <br>
-                        <input type="submit" id="btnEnviarSol" name="btnEnviarSol" value="Enviar"> </input></div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                           <br>
+                           <br>
+                           <br>
+                         <br>
+                           <br>
+                        <input type="submit" id="btnEnviarSol" name="btnEnviarSol" value="Generar"> </input></div>
 
-                </div>
+                <!-- </div> -->
                         {% if messages %}
                              <ul class="messages">
                              {% for message in messages %}
@@ -259,18 +278,8 @@ window.onload = function(){
             </form>
         </div>  <!-- Aqui termina el con de 12 --><!--  <div class="col-lg-3"></div>  -->
     </div>
-    <div class="row " style="  height: 40px;"></div>
-    <div class="row " style="  height: 40px;"></div>
+    <div class="row " style="  height: 340px;"></div>
 
-    <div class="row " style="  height: 40px;"></div>
-    <div class="row " style="   height: 20px;">
-        <div class="form-group col-md-5"></div>
-        <div class="form-group col-md-7 "><span style="color: #ed1b24" id="mensajes1" name="mensajes1">{{Error}} </span>
-        </div>
-    </div>
-    <div class="row " style="  height: 40px;"></div>
-    <div class="row " style="  height: 40px;"></div>
-    <div class="row " style="  height: 40px;"></div>
 
 </div>
 

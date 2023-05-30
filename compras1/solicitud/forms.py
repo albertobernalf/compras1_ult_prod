@@ -87,12 +87,17 @@ class ordenesCompraForm(forms.ModelForm):
         self.fields['area'].disabled = True
         self.fields['elaboro'].disabled = True
         self.fields['responsableCompra'].disabled = True
+        self.fields['fechaElab'].disabled = True
+        self.fields['fechaRevi'].disabled = True
+        self.fields['fechaApro'].disabled = True
+
 
     id = forms.IntegerField(label='Orde de Compra No', disabled=True, initial=0)
-    fechaElab = forms.DateField(initial=datetime.date.today)
-    fechaRevi = forms.DateField(initial=datetime.date.today)
-    fechaApro = forms.DateField(initial=datetime.date.today)
-    estadoOrden = forms.CharField(label='estadoOrdenon', max_length=1)
+    #fechaElab = forms.DateField(initial=datetime.date.today)
+    #fechaRevi = forms.DateField(initial=datetime.date.today)
+    #fechaApro = forms.DateField(initial=datetime.date.today)
+    #estadoOrden = forms.CharField(label='estadoOrdenon', max_length=1)
+    estadoOrden = forms.Select()
     elaboro = forms.Select()
     revizo = forms.Select()
     aprobo = forms.Select()
@@ -100,7 +105,8 @@ class ordenesCompraForm(forms.ModelForm):
     contacto = forms.CharField(max_length=120)
     entregarEn = forms.CharField(max_length=120)
     telefono = forms.CharField(max_length=120)
-    proveedor_id = forms.ModelChoiceField(queryset=Proveedores.objects.all())
+    #proveedor_id = forms.ModelChoiceField(queryset=Proveedores.objects.all())
+    proveedor = forms.Select()
    # opciones = forms.CharField(max_length=10)
     opciones = forms.Select()
     valorBruto = forms.DecimalField()

@@ -71,12 +71,12 @@
                 {
                     "render": function ( data, type, row ) {
                         var btn = '';
-                     btn = btn + " <button class='btn btn-primary editPostu' data-pk='" + row.pk + "'>" + '<i class="fa fa-pencil"></i>' + "</button>";
+                     btn = btn + " <button class='btn btn-primary anular' data-pk='" + row.pk + "'>" + '<i class="fa fa-pencil">Anular</i>' + "</button>";
 
                              return btn;
 
                     },
-                    "targets": 19
+                    "targets": 18
                 }
             ],
             ajax: {
@@ -86,7 +86,7 @@
                 dataSrc: ""
             },
 
-            lengthMenu: [3, 5, 10, 20, 30, 40, 50],
+            lengthMenu: [5, 10, 20, 30, 40, 50],
             columns: [
                 { data: "fields.id" },
                 { data: "fields.fechaElab" },
@@ -99,7 +99,7 @@
 
                 { data: "fields.item" },
                 { data: "fields.articulo" },
-                 { data: "fields.estadoOrden" },
+             //    { data: "fields.estadoOrden" },
                 { data: "fields.opciones" },
                 { data: "fields.valorBruto" },
                 { data: "fields.descuento" },
@@ -128,6 +128,44 @@
                 $(".error-msg").find("ul").append('<li>'+value+'</li>');
             });
         }
+
+
+/*------------------------------------------
+        --------------------------------------------
+        Anular Code
+        --------------------------------------------
+        --------------------------------------------*/
+        $("body").on("click",".anular",function(){
+            var current_object = $(this);
+
+
+        var anular_id = $(this).data('pk');
+         var ordenCompra = "";
+
+
+        $(this).parents("tr").find('td:eq(0)').each(function() {
+          ordenCompra += $(this).html() + "\n";
+        });
+            alert("OrdenCompra = " + ordenCompra );
+            $.ajax({
+                url:"/anular_ordenCompra/" +  ordenCompra,
+                type: "POST",
+               success: function (data) {
+                    if ($.isEmptyObject(data.error)) {
+
+                        $('.success-msg').css('display','block');
+                        $('.success-msg').text(data.message);
+                    }else{
+                        printErrorMsg(data.error)
+                    }
+                    table.ajax.reload();
+                },
+                error: function (data) {
+                    $('#saveBtn').html('Save Changes');
+                }
+            });
+        });
+
 
 
     });
@@ -178,7 +216,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="alert alert-success success-msg" style="display:none"></div>
-                            <table class="table table-bordered tablaOrdenesCompraConsulta" style="width:100%" >
+                            <table class="table table-bordered tablaOrdenesCompraConsulta"  >
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -186,27 +224,21 @@
                                     <th>prov</th>
                                     <th>area</th>
                                     <th>Comp</th>
-                              <!--       <th>Staff</th>  -->
                                     <th>obs</th>
                                     <th>it</th>
                                     <th>art</th>
-                                    <th>est</th>
+
                                     <th>opc</th>
                                     <th>vrBrut</th>
                                     <th>desc</th>
                                     <th>vrPar</th>
                                     <th>iva</th>
                                     <th>vrTot</th>
-                                 <!--     <th>iva</th> -->
                                     <th>CantR</th>
                                     <th>CantS</th>
                                     <th>vrUnit</th>
                                     <th>VlrS</th>
                                     <th>VlrR</th>
-
-
-
-
                                 </tr>
                                 </thead>
                                 <tbody>

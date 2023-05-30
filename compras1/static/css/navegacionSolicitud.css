@@ -228,3 +228,55 @@ span1 {
     height: 300px;
     overflow:scroll;
 }
+
+
+.tablaOrdenesCompra{
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.tablaOrdenesCompra th {
+    font-size: 10px;
+     background-color:#55caf3;
+     font-weight: bold;
+  }
+
+.tablaOrdenesCompra td {
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+    width:1px;
+  }
+
+.tablaOrdenesCompra  tr  {
+     height:1px ;
+ }
+
+
+
+
+
+.tablaOrdenesCompraConsulta{
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.tablaOrdenesCompraConsulta th {
+    font-size: 10px;
+     background-color:#55caf3;
+     font-weight: bold;
+  }
+
+.tablaOrdenesCompraConsulta td {
+    font-family:Arial ;
+    font-size: 10px;
+    font-weight: bold;
+    width:1px;
+  }
+
+.tablaOrdenesCompraConsulta  tr  {
+     height:1px ;
+ }
+

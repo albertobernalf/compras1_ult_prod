@@ -73,10 +73,10 @@
                     "render": function ( data, type, row ) {
                         var btn = '';
                 // <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-                        btn = btn + " <button class='btn btn-secondary editPost'    data-pk='" + row.pk + "'>" + '<i class="fa fa-pencil"></i>'  +  'Editar' + "</button>";
+                        btn = btn + " <button class='btn  editPost'    data-pk='" + row.pk + "'>" + '<i class="fa fa-pencil"></i>'  +  'Editar' + "</button>";
 
                           btn = btn +  "<a href='{% url "post_descargaArchivo" %}" + "/" +  row.pk + "'>"   +  ' ' + "Adjunto</a>";
-                          btn = btn + " <button class='btn btn-primary imprimePost'    data-pk='" + row.pk + "'>" + '<i class="fa fa-print">Orden</i>' + "</button>";
+                          btn = btn + " <button class='btn  imprimePost'    data-pk='" + row.pk + "'>" + '<i class="fa fa-print">Orden</i>' + "</button>";
 
 
 
@@ -322,19 +322,19 @@
                             <table class="table table-bordered tablaAlmacenDetalle" >
                                 <thead   >
                                 <tr >
-                                    <th>No</th>
+                                    <th>Sol#</th>
                                     <th>fecha</th>
-                                    <th>nombre_area</th>
-                                    <th>usuariosCreaSol</th>
-                                    <th>It</th>
+                                    <th>Area</th>
+                                    <th>Usuario</th>
+                                    <th>Item</th>
                                 <!--     <th>Tipo</th>  -->
                                     <th>Producto</th>
-                                    <th>#</th>
+                                    <th>cant</th>
                                     <th>Espec.Tec</th>
-                                     <th >Est.Alm</th>
+                                     <th>Almacen</th>
                                      <th>usuAlm</th>
                                      <th>Obs.Com</th>
-                                     <th >Est.Com</th>
+                                     <th>Compras</th>
                                      <th>usuCom</th>
                                     <th>Acciones</th>
 
@@ -473,25 +473,31 @@
                       <!--   </div> -->
                       <!--  </div> -->
 
-                               <div class="form-group">
-                        <label for="estadosValidacion" class="col-sm-2 control-label">estadosValidacion</label>
+
+                     <input type="hidden" name="estadosValidacion" id="estadosValidacion">
+
+                    <!--
+                    <div class="form-group">
+                        <label for="estadosValidacion" class="col-sm-2 control-label">EstadosValidacion</label>
                         <div class="col-sm-12">
 
-                             <select class="form-control" id="estadosValidacion" name="estadosValidacion" style="pointer-events: none;">
+                            <select class="form-control" id="estadosValidacion" name="estadosValidacion"
+                                    style="pointer-events: none;">
 
-                                 {% for estadosValidacion in EstadosValidacion %}
-                                    <option value="{{estadosValidacion.id}}"> {{estadosValidacion.nombre}}</option>
-                                    {% endfor %}
+                                {% for estadosValidacion in EstadosValidacion %}
+                                <option value="{{estadosValidacion.id}}"> {{estadosValidacion.nombre}}</option>
+                                {% endfor %}
 
                             </select>
 
-                           <!--     <input type="text" class="form-control" id="estadosValidacion" name="estadosValidacion" placeholder="Enter estado validacion"  value="" maxlength="50">  -->
 
                         </div>
                     </div>
+                    -->
 
-                       <div class="form-group">
-                        <label for="especificacionesAlmacen" class="col-sm-2 control-label">especificacionesAlmacen</label>
+
+                    <div class="form-group">
+                        <label for="especificacionesAlmacen" class="col-sm-2 control-label">EspecificacionesAlmacen</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="especificacionesAlmacen" name="especificacionesAlmacen" placeholder="Enter especificacionesAlmacen"
                                    value="" maxlength="150" readonly >
@@ -499,7 +505,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="estadosAlmacen" class="col-sm-2 control-label">estadosAlmacen</label>
+                        <label for="estadosAlmacen" class="col-sm-2 control-label">EstadosAlmacen</label>
                         <div class="col-sm-12">
                             <select class="form-control" id="estadosAlmacen" name="estadosAlmacen" style="pointer-events: none;">
 
@@ -524,7 +530,7 @@
                     <!-- </div> -->
 
                      <div class="form-group">
-                        <label for="observacionesCompras" class="col-sm-2 control-label">Observaciones Compras</label>
+                        <label for="observacionesCompras" class="col-sm-2 control-label">ObservacionesCompras</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="observacionesCompras" name="observacionesCompras" placeholder="Enter Observaciones Compras"
                                    value="" maxlength="150">
@@ -534,7 +540,7 @@
 
 
                       <div class="form-group">
-                        <label for="adjuntoCompras" class="col-sm-2 control-label">Archivo adjunto</label>
+                        <label for="adjuntoCompras" class="col-sm-2 control-label">ArchivoAdjunto</label>
                         <div class="col-sm-12">
                           <input type="file" class="form-control" id="adjuntoCompras" name="adjuntoCompras"  placeholder="Enter Adjunto Compras" >
                         </div>
@@ -544,7 +550,7 @@
 
 
                       <div class="form-group">
-                        <label for="estadosCompras" class="col-sm-2 control-label">estadosCompras</label>
+                        <label for="estadosCompras" class="col-sm-2 control-label">EstadosCompras</label>
                         <div class="col-sm-12">
                             <select class="form-control" id="estadosCompras" name="estadosCompras" required>
 
@@ -571,11 +577,7 @@
                     </div>
                 </form>
 
-                 {% if uploaded_file_url %}
-                    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-                    {% endif %}
 
-                    <p><a href="{% url 'post_storeCompras' %}">Return to home</a></p>
 
 
             </div>

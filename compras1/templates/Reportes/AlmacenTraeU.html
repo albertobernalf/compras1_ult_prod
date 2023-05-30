@@ -126,6 +126,8 @@
                 $('#presentacion').val(data.presentacion_id);
                 $('#presentacion_nombre').val(data.presentacion);
                 $('#cantidad').val(data.cantidad);
+                $('#solicitadoAlmacen').val(data.solicitadoAlmacen);
+
                 $('#justificacion').val(data.justificacion);
                 $('#especificacionesTecnicas').val(data.especificacionesTecnicas);
                 $('#usuarioResponsableValidacion').val(data.usuarioResponsableValidacion_id);
@@ -163,6 +165,15 @@
             var username = document.getElementById("username").value;
             $(this).html('Sending..');
 
+            var  cantidad = document.getElementById("cantidad").value;
+            var  solicitadoAlmacen = document.getElementById("solicitadoAlmacen").value;
+
+            if (solicitadoAlmacen > cantidad)
+                {
+                alert("Almacen no debe solicitar mas de lo solicitado por el usuario. Favor corregir");
+                }
+            else
+            {
             $.ajax({
                 data: $('#postForm').serialize(),
 
@@ -202,6 +213,7 @@
                     $('#saveBtn').html('Save Changes');
                 }
             });
+            }
         });
 
 
@@ -270,19 +282,19 @@
                             <table class="table table-bordered tablaAlmacenDetalle" >
                                 <thead>
                                 <tr >
-                                    <th>No</th>
-                                    <th>fecha</th>
-                                    <th>nombre_area</th>
-                                    <th>usuariosCreaSol</th>
+                                    <th>Sol#</th>
+                                    <th>Fecha</th>
+                                    <th>Area</th>
+                                    <th>Usuario</th>
                                     <th>Item</th>
                                     <th>Tipo</th>
                                     <th>Producto</th>
-                                    <th>#</th>
+                                    <th>Cant</th>
                                     <th>Espec.Tec</th>
-                                    <th>Est.valid.</th>
+                                    <th>valid</th>
                                      <th>Esp.Alm</th>
-                                     <th >Est.Alm</th>
-                                     <th>usuAlm</th>
+                                     <th>Almacen</th>
+                                     <th>UsuAlm</th>
                                      <th>Action</th>
                                   <!--  <th data-visible="true"></th>  -->
 
@@ -380,8 +392,6 @@
                         </div>
                     </div> -->
 
-                    <input type="hidden" name="cantidad" id="cantidad">
-
 
                      <!--       <div class="form-group">
                         <label for="cantidad" class="col-sm-2 control-label">cantidad</label>
@@ -423,7 +433,7 @@
                     </div>
 
                                <div class="form-group">
-                        <label for="estadosValidacion" class="col-sm-2 control-label">estadosValidacion</label>
+                        <label for="estadosValidacion" class="col-sm-2 control-label">EstadosValidacion</label>
                         <div class="col-sm-12">
 
                              <select class="form-control" id="estadosValidacion" name="estadosValidacion" style="pointer-events: none;">
@@ -434,22 +444,42 @@
 
                             </select>
 
-                           <!--     <input type="text" class="form-control" id="estadosValidacion" name="estadosValidacion" placeholder="Enter estado validacion"  value="" maxlength="50">  -->
+
 
                         </div>
                     </div>
 
+                     <div class="form-group">
+                        <label for="cantidad" class="col-sm-2 control-label">Usuariosolicita</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="cantidad" name="cantidad" value="" maxlength="150" readonly>
+                        </div>
+                    </div>
+
+
                        <div class="form-group">
-                        <label for="especificacionesAlmacen" class="col-sm-2 control-label">especificacionesAlmacen</label>
+                        <label for="especificacionesAlmacen" class="col-sm-2 control-label">EspecificacionesAlmacen</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="especificacionesAlmacen" name="especificacionesAlmacen" placeholder="Enter especificacionesAlmacen"
                                    value="" maxlength="150">
                         </div>
                     </div>
 
+                     <!-- NUEVO CAMPO -->
 
                        <div class="form-group">
-                        <label for="estadosAlmacen" class="col-sm-2 control-label">estadosAlmacen</label>
+                        <label for="solicitadoAlmacen" class="col-sm-2 control-label">SolicitadoAlmacen</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="solicitadoAlmacen" name="solicitadoAlmacen" placeholder="Enter solicitadoAlmacen"
+                                   value="" maxlength="150" >
+                        </div>
+
+                      <!-- FIN NUEVO CAMPO -->
+
+
+
+                       <div class="form-group">
+                        <label for="estadosAlmacen" class="col-sm-2 control-label">EstadosAlmacen</label>
                         <div class="col-sm-12">
                                 <select class="form-control" id="estadosAlmacen" name="estadosAlmacen" required>
 
@@ -463,6 +493,9 @@
                     </div>
 
 
+                                    <input type="hidden" name="usuAlmacen" id="usuAlmacen">
+                        <!--
+
                             <div class="form-group">
                         <label for="usuAlmacen" class="col-sm-2 control-label">usuAlmacen</label>
                         <div class="col-sm-12">
@@ -470,6 +503,9 @@
                                    value="" maxlength="150" readonly>
                         </div>
                     </div>
+                    -->
+
+
 
                     <div class="col-sm-offset-2 col-sm-10 mt-2">
                         <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Graba Cambios

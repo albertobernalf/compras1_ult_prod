@@ -75,12 +75,12 @@ window.onload = function(){
                 <input type="datetime-local" id="fecha" name="fecha" readonly> </input>
 
             </div>
-            <div class="  col-lg-2 "></div>
-            <div class="  col-lg-4 "><label for="id" class="col-form-label">Solicitud No:</label></div>
+            <div class="  col-lg-5 "></div>
+            <div class="  col-lg-1 "><label for="id" class="col-form-label">Solicitud:</label></div>
 
             <div class="col-lg-2 ">
 
-                <input type="text" id="id" name="id" value="" style=" background-color: cyan" size="14" readonly></input>
+                <input type="text" id="idd" name="idd" value="" style=" background-color: cyan" size="15" readonly></input>
             </div>
 
         </div> <!-- Fin Primera Fila -->
@@ -191,10 +191,10 @@ window.onload = function(){
         <!-- Inicia sexta Fila -->
         <div class="row">
 
-            <div class=" col-lg-2 "></div>
+            <div class=" col-lg-1 "></div>
 
-            <div class=" col-lg-2 ">
-                <input type="button"  id="btnAdicion" name="btnAdicion" value="Adicionar"> </input>
+            <div class=" col-lg-3 ">
+              <input type="button"  heigth="200px" id="btnSolCrea" name="btnSolCrea" value="Guardar" onclick="guardarSolicitud()"></input>
 
             </div>
              <div class=" col-lg-4 "></div>
@@ -204,7 +204,8 @@ window.onload = function(){
 
 
             <div class=" col-lg-1 ">
-              <input type="button"  heigth="200px" id="btnSolCrea" name="btnSolCrea" value="Guardar" onclick="guardarSolicitud()"></input>
+
+              <input type="button"  id="btnAdicion" name="btnAdicion" value="Adicionar"> </input>
             </div>
             <div class=" col-lg-1 "></div>
 

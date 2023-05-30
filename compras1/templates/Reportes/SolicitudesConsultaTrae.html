@@ -68,8 +68,9 @@
                     "render": function ( data, type, row ) {
                         var btn = '';
 
-                        btn = btn + " <button class='btn btn-primary editPost' data-pk='" + row.pk + "'>" + '<i class="fa fa-pencil"></i>' + "</button>";
+                     <!--   btn = btn + " <button class='btn btn-primary anular' data-pk='" + row.pk + "'>" + '<i class="fa fa-pencil"></i>' + "</button>"; -->
                      <!--   btn = btn + " <button class='btn btn-danger deletePost' data-action='post/" + row.pk + "/delete' data-pk='" + row.pk + "'>" + '<i class="fa fa-trash"></i>' + "</button>"; -->
+                      btn = btn + " <button class='btn btn-primary anular' data-pk='" + row.pk + "'>" + '<i class="fa fa-pencil">Anular</i>' + "</button>";
 
                         return btn;
                     },
@@ -115,6 +116,42 @@
                 $(".error-msg").find("ul").append('<li>'+value+'</li>');
             });
         }
+
+/*------------------------------------------
+        --------------------------------------------
+        Anular Code
+        --------------------------------------------
+        --------------------------------------------*/
+        $("body").on("click",".anular",function(){
+            var current_object = $(this);
+
+
+        var anular_id = $(this).data('pk');
+         var items = "";
+         var item="";
+
+        $(this).parents("tr").find('td:eq(2)').each(function() {
+          item += $(this).html() + "\n";
+        });
+
+            $.ajax({
+                url:"/anular_solicitud/" +  anular_id + ',' + item,
+                type: "POST",
+               success: function (data) {
+                    if ($.isEmptyObject(data.error)) {
+
+                        $('.success-msg').css('display','block');
+                        $('.success-msg').text(data.message);
+                    }else{
+                        printErrorMsg(data.error)
+                    }
+                    table.ajax.reload();
+                },
+                error: function (data) {
+                    $('#saveBtn').html('Save Changes');
+                }
+            });
+        });
 
 
     });
@@ -167,19 +204,19 @@
                             <table class="table table-bordered tablaSolicitudesConsulta">
                                 <thead>
                                 <tr>
-                                    <th>Solicitud No</th>
+                                    <th>Sol#</th>
                                     <th>Fecha</th>
                                     <th>Item</th>
                                     <th>Descripcion</th>
                                     <th>Tipo</th>
                                     <th>Producto</th>
                                     <th>Presentacion</th>
-                                    <th>Cantidad</th>
-                                    <th>Justificacion</th>
-                                    <th>Espec.Tecnicas</th>
-                                    <th>usuSolicitud</th>
-                                    <th>Estado validacion</th>
-                                    <th>Opciones</th>
+                                    <th>Cant.</th>
+                                    <th>Justifica</th>
+                                    <th>Esp.Tecnicas</th>
+                                    <th>Usuario</th>
+                                    <th>Validacion</th>
+                                    <th></th>
 
 
                                 </tr>

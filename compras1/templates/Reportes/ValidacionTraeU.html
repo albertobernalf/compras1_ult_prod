@@ -309,11 +309,11 @@
                             <table class="table table-bordered tablaValidacionDetalle"   >
                                 <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>Sol#</th>
                                     <th>fecha</th>
                                     <th>nombre_area</th>
                                     <th>usuariosCreaSol</th>
-                                    <th>It</th>
+                                    <th>Item</th>
 
                                     <th>Tipo</th>
                                     <th>Producto</th>
@@ -321,8 +321,8 @@
                                     <th>Cantidad</th>
                                     <th>Justificacion</th>
 
-                                    <th>Resp.Validacion</th>
-                                    <th>Estado validacion</th>
+                                    <th>Valida</th>
+                                    <th>Estado</th>
                                     <th>Action</th>
                                   <!--  <th data-visible="true"></th>  -->
                                 </tr>
@@ -394,49 +394,47 @@
                     </div> -->
 
                  <input type="hidden" name="producto" id="producto">
-                    <input type="hidden" name="producto_nombre" id="producto_nombre">
+                  <!--   <input type="hidden" name="producto_nombre" id="producto_nombre">  -->
 
-                    <!--   <div class="form-group">
+                       <div class="form-group">
                         <label for="producto_nombre" class="col-sm-2 control-label">producto</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="producto_nombre" name="producto_nombre" placeholder="Enter producto"
-                                   value="" maxlength="150" readonly>
+                            <input type="text" class="form-control" id="producto_nombre" name="producto_nombre" value="" maxlength="150" readonly>
                         </div>
-                    </div> -->
+                    </div>
 
                     <input type="hidden" name="presentacion" id="presentacion">
                    <!--   <input type="hidden" name="presentacion_nombre" id="presentacion_nombre"> -->
 
                            <div class="form-group">
-                        <label for="presentacion_nombre" class="col-sm-2 control-label">presentacion</label>
+                        <label for="presentacion_nombre" class="col-sm-2 control-label">Presentacion</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="presentacion_nombre" name="presentacion_nombre" placeholder="Enter presentacion"
                                    value="" maxlength="150" readonly>
                         </div>
                     </div>
 
-                     <input type="hidden" name="cantidad" id="cantidad">
+                   <!--    <input type="hidden" name="cantidad" id="cantidad">  -->
 
-                       <!--    <div class="form-group">
-                        <label for="cantidad" class="col-sm-2 control-label">cantidad</label>
+                           <div class="form-group">
+                        <label for="cantidad" class="col-sm-2 control-label">Cantidad</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="cantidad" name="cantidad" placeholder="Enter cantidad"
+                            <input type="text" class="form-control" id="cantidad" name="cantidad"
                                    value="" maxlength="50" readonly>
                         </div>
-                    </div> -->
-                    <input type="hidden" name="justificacion" id="justificacion">
+                    </div>
+                  <!--    <input type="hidden" name="justificacion" id="justificacion">  -->
 
 
-                       <!--      <div class="form-group">
-                        <label for="justificacion" class="col-sm-2 control-label">justificacion</label>
+                             <div class="form-group">
+                        <label for="justificacion" class="col-sm-2 control-label">Justificacion</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="justificacion" name="justificacion" placeholder="Enter justificacion"
-                                   value="" maxlength="150" readonly>
+                            <input type="text" class="form-control" id="justificacion" name="justificacion" value="" maxlength="150" readonly>
                         </div>
-                    </div> -->
+                    </div>
 
                          <div class="form-group">
-                        <label for="especificacionesTecnicas" class="col-sm-2 control-label">especificacionesTecnicas</label>
+                        <label for="especificacionesTecnicas" class="col-sm-2 control-label">EspecificacionesTecnicas</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="especificacionesTecnicas" name="especificacionesTecnicas" placeholder="Enter especificacionesTecnicas"
                                    value="" maxlength="150">
@@ -444,18 +442,21 @@
                     </div>
 
                       <input type="hidden" name="usuarioResponsableValidacion" id="usuarioResponsableValidacion">
+                    <input type="hidden" name="usuarioResponsableValidacion_nombre" id="usuarioResponsableValidacion_nombre">
 
-
+                    <!--
                            <div class="form-group">
-                        <label for="usuarioResponsableValidacion_nombre" class="col-sm-2 control-label">usuarioResponsableValidacion</label>
+                        <label for="usuarioResponsableValidacion_nombre" class="col-sm-2 control-label">UsuarioResponsableValidacion</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control" id="usuarioResponsableValidacion_nombre" name="usuarioResponsableValidacion_nombre" placeholder="Enter usuarioResponsableValidacion_nombre"
+                            <input type="text" class="form-control" id="usuarioResponsableValidacion_nombre" name="usuarioResponsableValidacion_nombre"
                                    value="" maxlength="150" readonly>
                         </div>
                     </div>
 
+                    -->
+
                                <div class="form-group">
-                        <label for="estadosValidacion" class="col-sm-2 control-label">estadosValidacion</label>
+                        <label for="estadosValidacion" class="col-sm-2 control-label">EstadosValidacion</label>
                         <div class="col-sm-12">
 
                              <select class="form-control" id="estadosValidacion" name="estadosValidacion" required>

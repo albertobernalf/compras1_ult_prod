@@ -123,7 +123,7 @@ function guardarSolicitud()
 		success: function (respuesta) {
 
             	document.getElementById("mensajes").innerHTML = respuesta;
-               	document.getElementById("id").innerHTML = "";
+
              	document.getElementById("sedeSeleccionada").innerHTML = sedeSeleccionada;
              	document.getElementById("username").innerHTML = "username";
              	document.getElementById("nombreUsuario").innerHTML = "nombreUsuario";
@@ -148,9 +148,13 @@ function guardarSolicitud()
                    //$("#tablaSolicitud").empty();  // ops borro todda la tabla
                   // $('#tablaSolicitud tbody tr').remove();
                    $(tablaSolicitud).remove("tr:gt(0)");
-                 setTimeout(task, 3000);
+
+                 document.getElementById("idd").value = respuesta;
+                 var creoSol = respuesta;
+
                 window.location.reload()
-                document.getElementById("mensajes").innerHTML = respuesta;
+                     setTimeout(task, 15000);
+                document.getElementById("idd").value = creoSol;
 
                   // alert("LISTO")
                     },

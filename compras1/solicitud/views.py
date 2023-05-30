@@ -681,7 +681,7 @@ def guardarSolicitudes(request, username,sedeSeleccionada,nombreUsuario,fecha,no
     ## fin rutina correo electronico
     #print("salid de Correo Enviado")
 
-    return HttpResponse('Solicitud creada No ' + str(solicitudId))
+    return HttpResponse('Solicitud ' + str(solicitudId))
 
     #debe habes un POST
 
@@ -814,7 +814,9 @@ def load_dataSolicitudesConsulta(request, data):
     #comando = 'SELECT sol0.id id,substring(to_char(sol0.fecha,' + "'" + 'yyyy-mm-dd' + "'" + '),1,10)  fecha,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec, est.nombre estValidacion, sol."estadosValidacion_id" estadosValidacion_id , usu.nom_usuario usuSolicitud FROM public.solicitud_solicitudes sol0, public.solicitud_solicitudesDetalle sol , public.solicitud_descripcioncompra des, public.solicitud_tiposcompra tip, public.solicitud_presentacion pres, public.solicitud_articulos art    , public.solicitud_usuarios usu , public.solicitud_estadosvalidacion est      WHERE sol0.fecha >= ' + "'" + desdeFechaSolicitud + "'" + ' and sol0.fecha <= ' + "'"  + hastaFechaSolicitud + "'" + '  and sol0.id = sol.solicitud_id and des.id = sol.descripcion_id and tip.id = sol."tiposCompra_id" and pres.id = sol.presentacion_id and art."codregArticulo" = sol.producto and usu.num_identificacion = ' + "'" + str(username) + "'" + ' AND usu.id = sol0."usuarios_id" and est.id = sol."estadosValidacion_id"  ORDER BY sol0.fecha, sol.item'
 
     #comando = 'SELECT sol0.id id,substring(to_char(sol0.fecha,' + "'" + 'yyyy-mm-dd' + "'" + '),1,10)  fecha,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec, est.nombre estValidacion, sol."estadosValidacion_id" estadosValidacion_id , usu.nom_usuario usuSolicitud FROM public.solicitud_solicitudes sol0 LEFT JOIN public.solicitud_solicitudesDetalle sol ON (sol.solicitud_id = sol0.id ) LEFT JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id) LEFT JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id") LEFT JOIN public.solicitud_presentacion pres ON (pres.id = sol.presentacion_id) LEFT JOIN public.solicitud_articulos art ON (art."codregArticulo" = sol.producto ) LEFT JOIN public.solicitud_usuarios usu ON (usu.id = sol0."usuarios_id") LEFT JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id") WHERE sol0.fecha >= ' + "'" + desdeFechaSolicitud + "'" + ' and sol0.fecha <= ' + "'"  + hastaFechaSolicitud + "'" + ' and usu.num_identificacion = ' + "'" + str(username) + "' ORDER BY sol0.fecha, sol.item "
-    comando = 'SELECT sol0.id id,substring(to_char(sol0.fecha,' + "'" + 'yyyy-mm-dd' + "'" + '),1,10)  fecha,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec, est.nombre estValidacion, sol."estadosValidacion_id" estadosValidacion_id , usu.nom_usuario usuSolicitud FROM public.solicitud_solicitudes sol0 LEFT JOIN public.solicitud_solicitudesDetalle sol ON (sol.solicitud_id = sol0.id ) LEFT JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id) LEFT JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id") LEFT JOIN public.solicitud_presentacion pres ON (pres.id = sol.presentacion_id) LEFT JOIN public.solicitud_articulos art ON (art."codregArticulo" = sol.producto ) LEFT JOIN public.solicitud_usuarios usu ON (usu.id = sol0."usuarios_id") LEFT JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id") WHERE usu.num_identificacion = ' + "'" + str(username) + "' ORDER BY sol0.fecha, sol.item "
+    #comando = 'SELECT sol0.id id,substring(to_char(sol0.fecha,' + "'" + 'yyyy-mm-dd' + "'" + '),1,10)  fecha,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec, est.nombre estValidacion, sol."estadosValidacion_id" estadosValidacion_id , usu.nom_usuario usuSolicitud FROM public.solicitud_solicitudes sol0 LEFT JOIN public.solicitud_solicitudesDetalle sol ON (sol.solicitud_id = sol0.id ) LEFT JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id) LEFT JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id") LEFT JOIN public.solicitud_presentacion pres ON (pres.id = sol.presentacion_id) LEFT JOIN public.solicitud_articulos art ON (art."codregArticulo" = sol.producto ) LEFT JOIN public.solicitud_usuarios usu ON (usu.id = sol0."usuarios_id") LEFT JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id") WHERE usu.num_identificacion = ' + "'" + str(username) + "' ORDER BY sol0.fecha desc, sol.item "
+
+    comando = 'SELECT sol0.id id,substring(to_char(sol0.fecha,' + "'" + 'yyyy-mm-dd' + "'" + '),1,10)  fecha,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec, est.nombre estValidacion, sol."estadosValidacion_id" estadosValidacion_id , usu.nom_usuario usuSolicitud FROM public.solicitud_solicitudes sol0 LEFT JOIN public.solicitud_solicitudesDetalle sol ON (sol.solicitud_id = sol0.id ) LEFT JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id) LEFT JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id") LEFT JOIN public.solicitud_presentacion pres ON (pres.id = sol.presentacion_id) LEFT JOIN public.solicitud_articulos art ON (art."codregArticulo" = sol.producto ) LEFT JOIN public.solicitud_usuarios usu ON (usu.id = sol0."usuarios_id") LEFT JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id") WHERE sol.estadoreg= ' + "'A'" + ' AND usu.num_identificacion = ' + "'" + str(username) + "' ORDER BY sol0.fecha desc, sol.item asc"
 
     print("pase comando")
     cur.execute(comando)
@@ -921,8 +923,9 @@ def load_dataValidacion(request, data):
 
     # Abro Conexion
 
-    miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",
-                                  password="BD_m3d1c4l")
+    EstadoPendienteValidacion = EstadosValidacion.objects.get(nombre="PENDIENTE")
+
+    miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres", password="BD_m3d1c4l")
     # cur = miConexion.cursor()
 
     miConexion.set_client_encoding('LATIN1')
@@ -930,7 +933,7 @@ def load_dataValidacion(request, data):
     cur.execute("set client_encoding='LATIN1';")
 
     #comando = 'SELECT sol0.id solicitudNo,to_char(sol0.fecha,' + "'YYYY - MM - DD HH: MM.SS'" +  ') fecha, sol0.area_id area, areas.area nombre_area, sol0.usuarios_id idUsuarioCreaSol, usuariosCreaSol.nom_usuario usuariosCreaSol, sol.id id, sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo, sol.producto producto, art.articulo nombre_producto, pres.nombre  presentacion, sol.cantidad, sol.justificacion, sol."especificacionesTecnicas" tec, usu.nom_usuario usuResp, est.nombre estValidacion, sol."estadosValidacion_id" estadosValidacion_id FROM public.solicitud_solicitudes sol0, public.solicitud_solicitudesDetalle sol, public.solicitud_descripcioncompra des, public.solicitud_tiposcompra tip, public.solicitud_presentacion pres, public.solicitud_articulos art, public.solicitud_usuarios usu, public.solicitud_estadosvalidacion est, public.solicitud_areas areas, public.solicitud_usuarios usuariosCreaSol WHERE sol0.id = sol.solicitud_id AND sol0.estadoReg = '  + "'A" + "'" + ' AND des.id = sol.descripcion_id and tip.id = sol."tiposCompra_id" and pres.id = sol.presentacion_id and art."codregArticulo" = sol.producto and usu.id = sol."usuarioResponsableValidacion_id" and est.id = sol."estadosValidacion_id" and sol."estadosValidacion_id" = 1 and  areas.id = sol0.area_id and usuariosCreaSol.id = sol0.usuarios_id ORDER BY sol.item'
-    comando = 'SELECT sol0.id solicitudNo,to_char(sol0.fecha,' + "'YYYY - MM - DD HH: MM.SS'" +  ') fecha, sol0.area_id area, areas.area nombre_area, sol0.usuarios_id idUsuarioCreaSol, usuariosCreaSol.nom_usuario usuariosCreaSol, sol.id id, sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo, sol.producto producto, art.articulo nombre_producto, pres.nombre  presentacion, sol.cantidad, sol.justificacion, sol."especificacionesTecnicas" tec, usu.nom_usuario usuResp, est.nombre estValidacion, sol."estadosValidacion_id" estadosValidacion_id FROM public.solicitud_solicitudes sol0 inner join public.solicitud_solicitudesDetalle sol on (sol.solicitud_id = sol0.id) inner join public.solicitud_descripcioncompra des on(des.id = sol.descripcion_id ) inner join public.solicitud_tiposcompra tip on (tip.id = sol."tiposCompra_id" ) inner join public.solicitud_presentacion pres on (pres.id = sol.presentacion_id ) inner join public.solicitud_articulos art on (art."codregArticulo" = sol.producto) left join public.solicitud_usuarios usu on (usu.id = sol."usuarioResponsableValidacion_id") inner join public.solicitud_estadosvalidacion est on (est.id = sol."estadosValidacion_id") inner join public.solicitud_areas areas on (areas.id = sol0.area_id) inner join public.solicitud_usuarios usuariosCreaSol on (usuariosCreaSol.id = sol0.usuarios_id) WHERE sol0.estadoReg = ' + "'A'" + ' AND sol."estadosValidacion_id" = 1 ORDER BY sol.item'
+    comando = 'SELECT sol0.id solicitudNo,to_char(sol0.fecha,' + "'YYYY - MM - DD HH: MM.SS'" +  ') fecha, sol0.area_id area, areas.area nombre_area, sol0.usuarios_id idUsuarioCreaSol, usuariosCreaSol.nom_usuario usuariosCreaSol, sol.id id, sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo, sol.producto producto, art.articulo nombre_producto, pres.nombre  presentacion, sol.cantidad, sol.justificacion, sol."especificacionesTecnicas" tec, usu.nom_usuario usuResp, est.nombre estValidacion, sol."estadosValidacion_id" estadosValidacion_id FROM public.solicitud_solicitudes sol0 inner join public.solicitud_solicitudesDetalle sol on (sol.solicitud_id = sol0.id) inner join public.solicitud_descripcioncompra des on(des.id = sol.descripcion_id ) inner join public.solicitud_tiposcompra tip on (tip.id = sol."tiposCompra_id" ) inner join public.solicitud_presentacion pres on (pres.id = sol.presentacion_id ) inner join public.solicitud_articulos art on (art."codregArticulo" = sol.producto) left join public.solicitud_usuarios usu on (usu.id = sol."usuarioResponsableValidacion_id") inner join public.solicitud_estadosvalidacion est on (est.id = sol."estadosValidacion_id") inner join public.solicitud_areas areas on (areas.id = sol0.area_id) inner join public.solicitud_usuarios usuariosCreaSol on (usuariosCreaSol.id = sol0.usuarios_id) WHERE sol.estadoReg = ' + "'A'" + ' AND sol."estadosValidacion_id" = ' + str(EstadoPendienteValidacion.id) + ' ORDER BY sol0.id,sol.item'
     cur.execute(comando)
     print(comando)
 
@@ -1131,11 +1134,14 @@ class PostStoreValidacion(TemplateView):
 
         # Buscamos estadosValidacion
 
+        estadoConOrdenCompra = EstadosValidacion.objects.get(nombre="CON ORDEN DE COMPRA")
+
         miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",
                                       password="BD_m3d1c4l")
         cur = miConexion.cursor()
 
-        comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est'
+        #comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est'
+        comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est WHERE est.nombre != ' + "'" + str(estadoConOrdenCompra.nombre) + "'"
         cur.execute(comando)
         print(comando)
 
@@ -1328,6 +1334,7 @@ class PostStoreAlmacen(TemplateView):
 
                 estadosAlmacenAct = request.POST.get('estadosAlmacen')
                 especificacionesAlmacenAct = request.POST.get('especificacionesAlmacen')
+                solicitadoAlmacen = request.POST.get('solicitadoAlmacen')
 
                 ## AVERIGUAMOS EL ID DEL USUARIO
 
@@ -1376,6 +1383,7 @@ class PostStoreAlmacen(TemplateView):
                     obj.estadosAlmacen_id = EstadosValidacion.objects.get(id=estadosAlmacenAct)
                     obj.especificacionesAlmacen=especificacionesAlmacenAct
                     obj.usuarioResponsableAlmacen_id = usuAlmacenAct
+                    obj.solicitadoAlmacen = solicitadoAlmacen
                     obj.save()
 
                 return JsonResponse({'success': True, 'message': 'Solicitud Detalle Updated Successfully!'})
@@ -1384,6 +1392,7 @@ class PostStoreAlmacen(TemplateView):
                     obj.estadosAlmacen_id = EstadosValidacion.objects.get(id=estadosAlmacenAct)
                     obj.especificacionesAlmacen = especificacionesAlmacenAct
                     obj.usuarioResponsableAlmacen_id = usuAlmacenAct
+                    obj.solicitadoAlmacen = solicitadoAlmacen
                     obj.save()
 
                 return JsonResponse({'success': True, 'message': 'Solicitud Detalle Created Successfully!'})
@@ -1508,7 +1517,7 @@ def load_dataAlmacen(request, data):
     estadoSinStock = EstadosAlmacen.objects.get(nombre="SIN STOCK")
     estadoConStock = EstadosAlmacen.objects.get(nombre="CON STOCK")
     estadoPendiente= EstadosAlmacen.objects.get(nombre="PENDIENTE")
-
+    estadoValidacionAprobado = EstadosValidacion.objects.get(nombre="APROBADO")
 
     # Abro Conexion
 
@@ -1522,7 +1531,7 @@ def load_dataAlmacen(request, data):
 
 
     #comando = 'SELECT sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec,usu.nom_usuario usuResp  , est.nombre estValidacion, est1.nombre estadosAlmacen, sol."estadosValidacion_id" estadosValidacion_id, sol."especificacionesAlmacen" especificacionesAlmacen, sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen FROM public.solicitud_solicitudesDetalle sol INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosvalidacion est1  ON (est1.id = sol."estadosAlmacen_id") WHERE sol.solicitud_id = ' + solicitudId + ' ORDER BY sol.item '
-    comando = 'SELECT sol0.id solicitudNo,to_char(sol0.fecha,' + "'YYYY - MM - DD HH: MM.SS'" + ') fecha, sol0.area_id area, areas.area nombre_area, sol0.usuarios_id idUsuarioCreaSol , usuariosCreaSol.nom_usuario usuariosCreaSol, sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec,usu.nom_usuario usuResp  , est.nombre estValidacion, est1.nombre estadosAlmacen, sol."estadosValidacion_id" estadosValidacion_id, sol."especificacionesAlmacen" especificacionesAlmacen,sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen FROM public.solicitud_solicitudes sol0 INNER JOIN public.solicitud_solicitudesDetalle sol on (sol.solicitud_id=sol0.id) INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosAlmacen est1  ON (est1.id = sol."estadosAlmacen_id") inner join public.solicitud_areas areas on (areas.id = sol0.area_id) inner join public.solicitud_usuarios usuariosCreaSol on (usuariosCreaSol.id = sol0.usuarios_id) WHERE  sol0.estadoReg = ' + "'A'" + ' AND sol."estadosAlmacen_id"   IN (' + str(estadoSinStock.id) + ',' + str(estadoConStock.id) + ',' + str(estadoPendiente.id)  + ') ORDER BY sol.item '
+    comando = 'SELECT sol0.id solicitudNo,to_char(sol0.fecha,' + "'YYYY-MM-DD HH:MM:SS'" + ') fecha, sol0.area_id area, areas.area nombre_area, sol0.usuarios_id idUsuarioCreaSol , usuariosCreaSol.nom_usuario usuariosCreaSol, sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec,usu.nom_usuario usuResp  , est.nombre estValidacion, est1.nombre estadosAlmacen, sol."estadosValidacion_id" estadosValidacion_id, sol."especificacionesAlmacen" especificacionesAlmacen,sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen , sol."solicitadoAlmacen" solicitadoAlmacen  FROM public.solicitud_solicitudes sol0 INNER JOIN public.solicitud_solicitudesDetalle sol on (sol.solicitud_id=sol0.id) INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosAlmacen est1  ON (est1.id = sol."estadosAlmacen_id") inner join public.solicitud_areas areas on (areas.id = sol0.area_id) inner join public.solicitud_usuarios usuariosCreaSol on (usuariosCreaSol.id = sol0.usuarios_id) WHERE  sol.estadoReg = ' + "'A'" + ' AND sol."estadosValidacion_id" = ' +  str(estadoValidacionAprobado.id)  + ' AND sol."estadosAlmacen_id"   IN (' + str(estadoConStock.id) + ',' + str(estadoPendiente.id)  + ') ORDER BY sol0.id, sol.item '
 
 
     cur.execute(comando)
@@ -1532,7 +1541,7 @@ def load_dataAlmacen(request, data):
     # solicitudDetalle.append({"model":"solicitud.solicitudesdetalle"})
 
     if (perfil == 'A'):
-      for solicitudNo,fecha,area,nombre_area,idUsuarioCreaSol,usuariosCreaSol,id, item, descripcion_id, descripcion, tipo, producto, nombre_producto, presentacion, cantidad, justificacion, tec, usuResp, estValidacion, estadosAlmacen, estadosValidacion_id, especificacionesAlmacen, estadosAlmacen_id, usuAlmacen in cur.fetchall():
+      for solicitudNo,fecha,area,nombre_area,idUsuarioCreaSol,usuariosCreaSol,id, item, descripcion_id, descripcion, tipo, producto, nombre_producto, presentacion, cantidad, justificacion, tec, usuResp, estValidacion, estadosAlmacen, estadosValidacion_id, especificacionesAlmacen, estadosAlmacen_id, usuAlmacen, solicitadoAlmacen in cur.fetchall():
         solicitudDetalle.append(
             {"model": "solicitud.solicitudesdetalle", "pk": id, "fields":
                 {"solicitudNo":solicitudNo,"fecha":fecha,"area":area, "nombre_area":nombre_area,"idUsuarioCreaSol":idUsuarioCreaSol,"usuariosCreaSol":usuariosCreaSol,
@@ -1545,7 +1554,7 @@ def load_dataAlmacen(request, data):
                  "estadosAlmacen": estadosAlmacen,
                  "estadosValidacion_id": estadosValidacion_id,
                  "especificacionesAlmacen": especificacionesAlmacen, "estadosAlmacen_id": estadosAlmacen_id,
-                 "usuAlmacen": usuAlmacen
+                 "usuAlmacen": usuAlmacen, "solicitadoAlmacen":solicitadoAlmacen
                  }})
 
     miConexion.close()
@@ -1602,14 +1611,14 @@ def post_editAlmacen(request,id,username,sedeSeleccionada,nombreUsuario,nombreSe
         cur.execute("set client_encoding='LATIN1';")
 
         #comando = 'SELECT sol.id id ,sol.item item, sol.descripcion_id descripcion_id, des.nombre descripcion,sol."tiposCompra_id" tiposCompra_id, tip.nombre tipo , sol.producto producto, substring(art.articulo,1,150) nombre_producto ,sol.presentacion_id  presentacion_id, pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec, sol."usuarioResponsableValidacion_id" usuarioResponsableValidacion_id,  usu.nom_usuario usuResp  , est.nombre estValidacion,est1.nombre estadosAlmacen  , sol."estadosValidacion_id" estadosValidacion_id ,  sol."especificacionesAlmacen" especificacionesAlmacen, sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen    FROM public.solicitud_solicitudesDetalle sol , public.solicitud_descripcioncompra des, public.solicitud_tiposcompra tip, public.solicitud_presentacion pres, public.solicitud_articulos art    , public.solicitud_usuarios usu , public.solicitud_usuarios usu1 , public.solicitud_estadosvalidacion est, public.solicitud_estadosvalidacion est1   WHERE sol.id = ' + str(id) + ' AND des.id = sol.descripcion_id and tip.id = sol."tiposCompra_id" and pres.id = sol.presentacion_id and art."codregArticulo" = sol.producto and usu1.id = sol."usuarioResponsableAlmacen_id" and usu.id = sol."usuarioResponsableValidacion_id" and est1.id = sol."estadosAlmacen_id"  and est.id = sol."estadosValidacion_id" ORDER BY sol.item'
-        comando =  'SELECT sol.id id ,sol.item item, sol.descripcion_id descripcion_id, des.nombre descripcion,sol."tiposCompra_id" tiposCompra_id, tip.nombre tipo , sol.producto producto, substring(art.articulo,1,150) nombre_producto ,sol.presentacion_id  presentacion_id, pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec, sol."usuarioResponsableValidacion_id" usuarioResponsableValidacion_id,  usu.nom_usuario usuResp  , est.nombre estValidacion,est1.nombre estadosAlmacen  , sol."estadosValidacion_id" estadosValidacion_id ,  sol."especificacionesAlmacen" especificacionesAlmacen, sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen    FROM public.solicitud_solicitudesDetalle sol INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosvalidacion est1  ON (est1.id = sol."estadosAlmacen_id") WHERE sol.id = ' + str(identif) + ' ORDER BY sol.item '
+        comando =  'SELECT sol.id id ,sol.item item, sol.descripcion_id descripcion_id, des.nombre descripcion,sol."tiposCompra_id" tiposCompra_id, tip.nombre tipo , sol.producto producto, substring(art.articulo,1,150) nombre_producto ,sol.presentacion_id  presentacion_id, pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec, sol."usuarioResponsableValidacion_id" usuarioResponsableValidacion_id,  usu.nom_usuario usuResp  , est.nombre estValidacion,est1.nombre estadosAlmacen  , sol."estadosValidacion_id" estadosValidacion_id ,  sol."especificacionesAlmacen" especificacionesAlmacen, sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen , sol."solicitadoAlmacen" solicitadoAlmacen  FROM public.solicitud_solicitudesDetalle sol INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosvalidacion est1  ON (est1.id = sol."estadosAlmacen_id") WHERE sol.id = ' + str(identif) + ' ORDER BY sol.item '
         cur.execute(comando)
         print(comando)
 
         solicitudDetalle = []
         # solicitudDetalle.append({"model":"solicitud.solicitudesdetalle"})
 
-        for id, item, descripcion_id, descripcion, tiposCompra_id, tipo, producto,nombre_producto, presentacion_id , presentacion, cantidad, justificacion, tec,usuarioResponsableValidacion_id, usuResp, estValidacion,estadosAlmacen, estadosValidacion_id, especificacionesAlmacen, estadosAlmacen_id , usuAlmacen    in cur.fetchall():
+        for id, item, descripcion_id, descripcion, tiposCompra_id, tipo, producto,nombre_producto, presentacion_id , presentacion, cantidad, justificacion, tec,usuarioResponsableValidacion_id, usuResp, estValidacion,estadosAlmacen, estadosValidacion_id, especificacionesAlmacen, estadosAlmacen_id , usuAlmacen  , solicitadoAlmacen  in cur.fetchall():
 
             solicitudDetalle.append(
                 {
@@ -1625,7 +1634,7 @@ def post_editAlmacen(request,id,username,sedeSeleccionada,nombreUsuario,nombreSe
                      "estadosAlmacen": estadosAlmacen,
                      "estadosValidacion_id": estadosValidacion_id,
                     "especificacionesAlmacen":especificacionesAlmacen, "estadosAlmacen_id":estadosAlmacen_id,
-                    "usuAlmacen":usuAlmacen
+                    "usuAlmacen":usuAlmacen, "solicitadoAlmacen":solicitadoAlmacen
                            })
 
         miConexion.close()
@@ -1653,7 +1662,8 @@ def post_editAlmacen(request,id,username,sedeSeleccionada,nombreUsuario,nombreSe
                              'estadosValidacion_id': solicitudDetalle[0]['estadosValidacion_id'],
                              'especificacionesAlmacen':solicitudDetalle[0]['especificacionesAlmacen'],
                              'estadosAlmacen_id': solicitudDetalle[0]['estadosAlmacen_id'],
-                             'usuAlmacen': solicitudDetalle[0]['usuAlmacen']
+                             'usuAlmacen': solicitudDetalle[0]['usuAlmacen'],'solicitadoAlmacen': solicitudDetalle[0]['solicitadoAlmacen'],
+
                              })
     else:
         return JsonResponse({'errors':'Something went wrong!'})
@@ -1880,11 +1890,14 @@ class PostStoreCompras(TemplateView):
 
         # Buscamos estadosValidacion
 
+        estadoConOrdenCompra = EstadosValidacion.objects.get(nombre="CON ORDEN DE COMPRA")
+
         miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",
                                       password="BD_m3d1c4l")
         cur = miConexion.cursor()
 
-        comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est'
+        #comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est'
+        comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est WHERE est.nombre != ' + "'" + str(estadoConOrdenCompra.nombre) + "'"
         cur.execute(comando)
         print(comando)
 
@@ -1930,7 +1943,8 @@ class PostStoreCompras(TemplateView):
                                       password="BD_m3d1c4l")
         cur = miConexion.cursor()
 
-        comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est'
+        #comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est'
+        comando = 'SELECT id,nombre FROM public.solicitud_estadosValidacion est WHERE est.nombre != ' + "'" + str(estadoConOrdenCompra.nombre) + "'"
         cur.execute(comando)
         print(comando)
 
@@ -1977,6 +1991,11 @@ def load_dataCompras(request, data):
     # Ahora SolicitudDetalle
     context= {}
 
+    EstadoPendienteValidacion = EstadosValidacion.objects.get(nombre="PENDIENTE")
+    EstadoPendienteAlmacen = EstadosValidacion.objects.get(nombre="PENDIENTE")
+    estadoConOrdenCompra = EstadosValidacion.objects.get(nombre="CON ORDEN DE COMPRA")
+    estadoRechazadoCompra = EstadosValidacion.objects.get(nombre="RECHAZADO")
+
     # Abro Conexion
 
     miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",
@@ -1988,7 +2007,8 @@ def load_dataCompras(request, data):
     cur.execute("set client_encoding='LATIN1';")
 
     #comando =  'SELECT sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec,usu.nom_usuario usuResp  , est.nombre estValidacion,est1.nombre estadosAlmacen, sol."estadosValidacion_id" estadosValidacion_id, sol."especificacionesAlmacen" especificacionesAlmacen, sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen , sol."observacionesCompras" observacionesCompras, sol."estadosCompras_id" estadosCompras_id, est2.nombre estadosCompras, usu2.nom_usuario usuCompras  FROM public.solicitud_solicitudesDetalle sol INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") LEFT JOIN public.solicitud_usuarios usu2 ON (usu2.id = sol."usuarioResponsableCompra_id") INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosvalidacion est1  ON (est1.id = sol."estadosAlmacen_id")  INNER JOIN public.solicitud_estadosvalidacion est2  ON (est2.id = "estadosCompras_id") WHERE sol.solicitud_id = ' + solicitudId + ' ORDER BY sol.item '
-    comando = 'SELECT sol0.id solicitudNo,to_char(sol0.fecha,' + "'YYYY - MM - DD HH: MM.SS'" + ') fecha, sol0.area_id area, areas.area nombre_area, sol0.usuarios_id idUsuarioCreaSol , usuariosCreaSol.nom_usuario usuariosCreaSol, sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec,usu.nom_usuario usuResp  , est.nombre estValidacion,est1.nombre estadosAlmacen, sol."estadosValidacion_id" estadosValidacion_id, sol."especificacionesAlmacen" especificacionesAlmacen, sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen , sol."observacionesCompras" observacionesCompras, sol."estadosCompras_id" estadosCompras_id, est2.nombre estadosCompras, usu2.nom_usuario usuCompras , sol."adjuntoCompras"  adjuntoCompras  FROM public.solicitud_solicitudes sol0 INNER JOIN public.solicitud_solicitudesDetalle sol ON (sol.solicitud_id = sol0.id) INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id)  INNER JOIN public.solicitud_articulos art ON (art."codregArticulo" = sol.producto) LEFT JOIN public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id")  LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") LEFT JOIN public.solicitud_usuarios usu2 ON (usu2.id = sol."usuarioResponsableCompra_id")  INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosAlmacen est1 ON (est1.id = sol."estadosAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est2 ON (est2.id = "estadosCompras_id") inner join public.solicitud_areas areas on (areas.id = sol0.area_id) inner join public.solicitud_usuarios usuariosCreaSol on (usuariosCreaSol.id = sol0.usuarios_id) WHERE sol0.estadoReg = ' + "'A'" + ' AND sol."estadosCompras_id" != 2 ORDER BY sol0.fecha desc, sol0.id'
+    #comando = 'SELECT sol0.id solicitudNo,to_char(sol0.fecha,' + "'YYYY - MM - DD HH: MM.SS'" + ') fecha, sol0.area_id area, areas.area nombre_area, sol0.usuarios_id idUsuarioCreaSol , usuariosCreaSol.nom_usuario usuariosCreaSol, sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec,usu.nom_usuario usuResp  , est.nombre estValidacion,est1.nombre estadosAlmacen, sol."estadosValidacion_id" estadosValidacion_id, sol."especificacionesAlmacen" especificacionesAlmacen, sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen , sol."observacionesCompras" observacionesCompras, sol."estadosCompras_id" estadosCompras_id, est2.nombre estadosCompras, usu2.nom_usuario usuCompras , sol."adjuntoCompras"  adjuntoCompras  FROM public.solicitud_solicitudes sol0 INNER JOIN public.solicitud_solicitudesDetalle sol ON (sol.solicitud_id = sol0.id) INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id)  INNER JOIN public.solicitud_articulos art ON (art."codregArticulo" = sol.producto) LEFT JOIN public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id")  LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") LEFT JOIN public.solicitud_usuarios usu2 ON (usu2.id = sol."usuarioResponsableCompra_id")  INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosAlmacen est1 ON (est1.id = sol."estadosAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est2 ON (est2.id = "estadosCompras_id") inner join public.solicitud_areas areas on (areas.id = sol0.area_id) inner join public.solicitud_usuarios usuariosCreaSol on (usuariosCreaSol.id = sol0.usuarios_id) WHERE sol0.estadoReg = ' + "'A'" + ' AND sol."estadosCompras_id" != 2 and est.nombre != ' + "'PENDIENTE'" + ' AND  est1.nombre   != ' + "'PENDIENTE'" + ' ORDER BY sol0.fecha desc, sol0.id'
+    comando = 'SELECT sol0.id solicitudNo,to_char(sol0.fecha,' + "'YYYY-MM-DD HH:MM:SS'" + ') fecha, sol0.area_id area, areas.area nombre_area, sol0.usuarios_id idUsuarioCreaSol , usuariosCreaSol.nom_usuario usuariosCreaSol, sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion,sol.cantidad, sol.justificacion  , sol."especificacionesTecnicas" tec,usu.nom_usuario usuResp  , est.nombre estValidacion,est1.nombre estadosAlmacen, sol."estadosValidacion_id" estadosValidacion_id, sol."especificacionesAlmacen" especificacionesAlmacen, sol."estadosAlmacen_id" estadosAlmacen_id ,   usu1.nom_usuario usuAlmacen , sol."observacionesCompras" observacionesCompras, sol."estadosCompras_id" estadosCompras_id, est2.nombre estadosCompras, usu2.nom_usuario usuCompras , sol."adjuntoCompras"  adjuntoCompras  FROM public.solicitud_solicitudes sol0 INNER JOIN public.solicitud_solicitudesDetalle sol ON (sol.solicitud_id = sol0.id) INNER JOIN public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id ) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id" ) INNER JOIN public.solicitud_presentacion pres on (pres.id = sol.presentacion_id)  INNER JOIN public.solicitud_articulos art ON (art."codregArticulo" = sol.producto) LEFT JOIN public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id")  LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id") LEFT JOIN public.solicitud_usuarios usu2 ON (usu2.id = sol."usuarioResponsableCompra_id")  INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id" ) INNER JOIN public.solicitud_estadosAlmacen est1 ON (est1.id = sol."estadosAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est2 ON (est2.id = "estadosCompras_id") inner join public.solicitud_areas areas on (areas.id = sol0.area_id) inner join public.solicitud_usuarios usuariosCreaSol on (usuariosCreaSol.id = sol0.usuarios_id) WHERE sol.estadoReg = ' + "'A'" + ' AND sol."estadosCompras_id" != 2 and est2.nombre NOT IN (' + "'" + str(estadoRechazadoCompra.nombre) + "'" + ",'" + str(estadoConOrdenCompra.nombre) + "')" + ' AND  est1.nombre   != ' +  "'" + str(EstadoPendienteAlmacen.nombre)   +  "'" + ' ORDER BY sol0.fecha desc, sol0.id'
 
     cur.execute(comando)
     print(comando)
@@ -1996,7 +2016,7 @@ def load_dataCompras(request, data):
     solicitudDetalle = []
     #solicitudDetalle.append({"model":"solicitud.solicitudesdetalle"})
 
-    if (perfil == 'C'):
+    if (perfil == 'C' or perfil == 'I'):
       for solicitudNo,fecha,area,nombre_area,idUsuarioCreaSol,usuariosCreaSol, id, item, descripcion_id, descripcion, tipo, producto, nombre_producto, presentacion, cantidad, justificacion, tec, usuResp, estValidacion, estadosAlmacen, estadosValidacion_id, especificacionesAlmacen, estadosAlmacen_id , usuAlmacen  ,observacionesCompras,estadosCompras_id, estadosCompras,usuCompras, adjuntoCompras  in cur.fetchall():
         solicitudDetalle.append(
             {"model":"solicitud.solicitudesdetalle","pk":id,"fields":
@@ -2178,12 +2198,12 @@ def OrdenesCompraConsulta1(request , username, sedeSeleccionada, nombreUsuario, 
 
 #class PostStoreOrdenesCompra(TemplateView):
 class PostStoreOrdenesCompra(CreateView):
-    #form_class = ordenesCompraForm
+    form_class = ordenesCompraForm
     model = OrdenesCompra
     template_name = 'Reportes/OrdenesCompraTrae22.html'
-    fields = ['fechaElab', 'fechaRevi', 'fechaApro', 'estadoOrden', 'elaboro', 'revizo', 'aprobo',
-              'area', 'contacto', 'entregarEn', 'telefono', 'proveedor', 'opciones', 'valorBruto',
-             'descuento','valorParcial','iva','valorTotal','observaciones','responsableCompra','entragaMercancia','recibeMercancia','aproboCompraStaff']
+    #fields = ['fechaElab', 'fechaRevi', 'fechaApro', 'estadoOrden', 'elaboro', 'revizo', 'aprobo',
+    #          'area', 'contacto', 'entregarEn', 'telefono', 'proveedor', 'opciones', 'valorBruto',
+    #         'descuento','valorParcial','iva','valorTotal','observaciones','responsableCompra','entragaMercancia','recibeMercancia','aproboCompraStaff']
 
     #success_url = "/ordenesCompra/OrdenesCompraBusca/"
     success_url = "/ordenesCompra/OrdenesCompraBusca/"
@@ -2257,6 +2277,7 @@ class PostStoreOrdenesCompra(CreateView):
 
         if ordenCompra != []:
 
+            now = datetime.now()
 
             initial['elaboro'] = ordenCompra[0]['idSol']
             initial['revizo'] = ordenCompra[0]['usuCompras']
@@ -2269,7 +2290,9 @@ class PostStoreOrdenesCompra(CreateView):
             initial['valorTotal'] = 0
             initial['valorParcial'] = initial['valorBruto'] - initial['descuento']
             initial['valorTotal'] = initial['valorParcial'] * initial['iva']
-
+            initial['fechaElab'] = now
+            initial['fechaRevi'] = now
+            initial['fechaApro'] = now
 
 
         ## Fin traigo valores extraidos de la solicitud
@@ -2341,14 +2364,42 @@ class PostStoreOrdenesCompra(CreateView):
 
         ## Comienza la rutina que crea el archivo Excel
 
-        # Contamos
-        valeQuerySet = SolicitudesDetalle.objects.filter(solicitud_id=solicitudId, estadosCompras_id=3)
+        ## Consigo el codigo sin stock del Almacen
+        estadoSinStockAlmacen = EstadosAlmacen.objects.get(nombre="SIN STOCK")
 
-        print("vale =", valeQuerySet.count())
+        # Contamos los que tengan ordenCompra_id=null y SIN STOCK POR EL ALMACEN y estados_compra_id = APROBADO
 
-        totalRegistros = valeQuerySet.count()
+        miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",
+                                      password="BD_m3d1c4l")
+        cur = miConexion.cursor()
+
+        comando = 'SELECT COUNT(*) registros FROM public.solicitud_solicitudesdetalle totalRegistros WHERE solicitud_id = ' + str(
+            solicitudId) + ' AND "ordenCompra_id" is null and "estadosAlmacen_id" =  ' + str(estadoSinStockAlmacen.id)
+
+        print(comando)
+        cur.execute(comando)
+
+        totalRegistrosMatriz = []
+
+        for registros in cur.fetchall():
+            totalRegistrosMatriz.append({'registros': registros})
+
+        miConexion.close()
+        print("totalRegistrosMatriz ")
+
+        for dato in totalRegistrosMatriz:
+            print(dato)
+            print(dato['registros'])
+            print(json.dumps(dato['registros']))
+            totalRegistros = json.dumps(dato['registros'])
+
+        totalRegistros = totalRegistros.replace("[", "")
+        totalRegistros = totalRegistros.replace("]", "")
 
         print("totalRegistros =", totalRegistros)
+
+        # Fin de un buen conteo
+
         print("VYa guarde la OC")
 
         context['NoOrdenCompra'] = idCompra
@@ -2606,7 +2657,7 @@ class PostStoreOrdenesCompra(CreateView):
         campoItem=1
         voy=23
 
-        for reg in range(1, totalRegistros + 1):
+        for reg in range(1, int(totalRegistros) + 1):
 
             var1 = "item_" + str(campoItem)
             while True:
@@ -2641,12 +2692,16 @@ class PostStoreOrdenesCompra(CreateView):
 
             ## Rutina Actualiza uno a una los items de la solicitud
 
+            estadoConOrdenCompra = EstadosValidacion.objects.get(nombre="CON ORDEN DE COMPRA")
+
             miConexiont = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432",
                                            user="postgres", password="BD_m3d1c4l")
             print("Me conecte")
             curt = miConexiont.cursor()
             print("Abri cursor")
-            comando = 'UPDATE solicitud_solicitudesDetalle set iva = ' + str(data2) + ', "recibidoOrdenCantidad" = ' + str(data4) + ', "recibidoOrdenValor" =' + str(data7) + ',"solicitadoOrdenCantidad" = ' + str(data3) + ',"solicitadoOrdenValor" = ' + str(data6) + ',"valorUnitario" = ' + str(data5) + ', "ordenCompra_id" = ' + str(idCompra) + ' WHERE solicitud_id = ' + solicitudId + ' AND item = ' + str(data1)
+            #comando = 'UPDATE solicitud_solicitudesDetalle set iva = ' + str(data2) + ', "recibidoOrdenCantidad" = ' + str(data4) + ', "recibidoOrdenValor" =' + str(data7) + ',"solicitadoOrdenCantidad" = ' + str(data3) + ',"solicitadoOrdenValor" = ' + str(data6) + ',"valorUnitario" = ' + str(data5) + ', "ordenCompra_id" = ' + str(idCompra) + ' WHERE solicitud_id = ' + solicitudId + ' AND item = ' + str(data1)
+            comando = 'UPDATE solicitud_solicitudesDetalle set iva = ' + str(data2) + ', "recibidoOrdenCantidad" = ' + str(data4) + ', "recibidoOrdenValor" =' + str(data7) + ',"solicitadoOrdenCantidad" = ' + str(data3) + ',"solicitadoOrdenValor" = ' + str(data6) + ',"valorUnitario" = ' + str(data5) + ', "ordenCompra_id" = ' + str(idCompra) + ', "estadosCompras_id" = ' + "'" + str(estadoConOrdenCompra.id) + "'" + ' WHERE solicitud_id = ' + solicitudId + ' AND item = ' + str(data1)
+
 
             print(comando)
             print("voy a ejecutar comando")
@@ -3327,6 +3382,10 @@ class PostStoreOrdenesCompra(CreateView):
             # POr aqui si existe
             ## Desde aquip codigo para la vista de ordenescompratrae2
 
+            estadoAprobadoValidacion = EstadosValidacion.objects.get(nombre="APROBADO")
+            estadoSinStockAlmacen = EstadosAlmacen.objects.get(nombre="SIN STOCK")
+            estadoConStockAlmacen = EstadosAlmacen.objects.get(nombre="CON STOCK")
+
             # Abro Conexion
 
             miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",
@@ -3339,7 +3398,9 @@ class PostStoreOrdenesCompra(CreateView):
 
 
             #comando = 'SELECT sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion, sol."solicitadoAlmacen" solicitadoAlmacen,sol.iva iva ,sol."recibidoOrdenCantidad" recibidoOrdenCantidad,sol."recibidoOrdenValor" recibidoOrdenValor,sol."solicitadoOrdenCantidad" solicitadoOrdenCantidad,sol."solicitadoOrdenValor" solicitadoOrdenValor,sol."valorUnitario" valorUnitario FROM public.solicitud_solicitudesDetalle sol , public.solicitud_descripcioncompra des, public.solicitud_tiposcompra tip, public.solicitud_presentacion pres, public.solicitud_articulos art    , public.solicitud_usuarios usu , public.solicitud_usuarios usu1 , public.solicitud_usuarios usu2,  public.solicitud_estadosvalidacion est , public.solicitud_estadosvalidacion est1 , public.solicitud_estadosvalidacion est2  WHERE sol.solicitud_id = ' + solicitudId + ' AND est2.nombre like (' + "'" + '%APROBA%' + "'" + ')  AND  (sol."ordenCompra_id"= 0 OR  sol."ordenCompra_id" is null)  AND des.id = sol.descripcion_id and tip.id = sol."tiposCompra_id" and pres.id = sol.presentacion_id and art."codregArticulo" = sol.producto and  usu2.id = sol."usuarioResponsableCompra_id"   and usu1.id = sol."usuarioResponsableAlmacen_id" and usu.id = sol."usuarioResponsableValidacion_id" and est1.id = sol."estadosAlmacen_id" and est2.id = "estadosCompras_id"  and est.id = sol."estadosValidacion_id" ORDER BY sol.item'
-            comando = 'SELECT sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion, sol."solicitadoAlmacen" solicitadoAlmacen,sol.iva iva ,sol."recibidoOrdenCantidad" recibidoOrdenCantidad,sol."recibidoOrdenValor" recibidoOrdenValor,sol."solicitadoOrdenCantidad" solicitadoOrdenCantidad,sol."solicitadoOrdenValor" solicitadoOrdenValor,sol."valorUnitario" valorUnitario , "adjuntoCompras" adjuntoCompras FROM public.solicitud_solicitudesDetalle sol INNER JOIN  public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id") INNER JOIN public.solicitud_presentacion pres ON (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id" ) LEFT JOIN public.solicitud_usuarios usu2 ON (usu2.id = sol."usuarioResponsableCompra_id" ) INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id") INNER JOIN public.solicitud_estadosvalidacion est1 ON (est1.id = sol."estadosAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est2  ON (est2.id = "estadosCompras_id") WHERE sol.solicitud_id = ' + solicitudId + ' AND est2.nombre like (' + "'" + '%APROBA%' + "'" + ')  AND  (sol."ordenCompra_id"= 0 OR  sol."ordenCompra_id" is null)  ORDER BY sol.item'
+            #comando = 'SELECT sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion, sol."solicitadoAlmacen" solicitadoAlmacen,sol.iva iva ,sol."recibidoOrdenCantidad" recibidoOrdenCantidad,sol."recibidoOrdenValor" recibidoOrdenValor,sol."solicitadoOrdenCantidad" solicitadoOrdenCantidad,sol."solicitadoOrdenValor" solicitadoOrdenValor,sol."valorUnitario" valorUnitario , "adjuntoCompras" adjuntoCompras FROM public.solicitud_solicitudesDetalle sol INNER JOIN  public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id") INNER JOIN public.solicitud_presentacion pres ON (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id" ) LEFT JOIN public.solicitud_usuarios usu2 ON (usu2.id = sol."usuarioResponsableCompra_id" ) INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id") INNER JOIN public.solicitud_estadosvalidacion est1 ON (est1.id = sol."estadosAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est2  ON (est2.id = "estadosCompras_id") WHERE sol.solicitud_id = ' + solicitudId + ' AND est2.nombre like (' + "'" + '%APROBA%' + "'" + ')  AND  (sol."ordenCompra_id"= 0 OR  sol."ordenCompra_id" is null)  ORDER BY sol.item'
+            comando = 'SELECT sol.id id,sol.item item, sol.descripcion_id, des.nombre descripcion, tip.nombre tipo ,sol.producto producto,  art.articulo nombre_producto ,pres.nombre presentacion, sol."solicitadoAlmacen" solicitadoAlmacen,sol.iva iva ,sol."recibidoOrdenCantidad" recibidoOrdenCantidad,sol."recibidoOrdenValor" recibidoOrdenValor,sol."solicitadoOrdenCantidad" solicitadoOrdenCantidad,sol."solicitadoOrdenValor" solicitadoOrdenValor,sol."valorUnitario" valorUnitario , "adjuntoCompras" adjuntoCompras FROM public.solicitud_solicitudesDetalle sol INNER JOIN  public.solicitud_descripcioncompra des ON (des.id = sol.descripcion_id) INNER JOIN public.solicitud_tiposcompra tip ON (tip.id = sol."tiposCompra_id") INNER JOIN public.solicitud_presentacion pres ON (pres.id = sol.presentacion_id) INNER JOIN public.solicitud_articulos art   ON (art."codregArticulo" = sol.producto) LEFT JOIN  public.solicitud_usuarios usu ON (usu.id = sol."usuarioResponsableValidacion_id") LEFT JOIN public.solicitud_usuarios usu1 ON (usu1.id = sol."usuarioResponsableAlmacen_id" ) LEFT JOIN public.solicitud_usuarios usu2 ON (usu2.id = sol."usuarioResponsableCompra_id" ) INNER JOIN public.solicitud_estadosvalidacion est ON (est.id = sol."estadosValidacion_id") INNER JOIN public.solicitud_estadosAlmacen est1 ON (est1.id = sol."estadosAlmacen_id") INNER JOIN public.solicitud_estadosvalidacion est2  ON (est2.id = "estadosCompras_id") WHERE sol.solicitud_id = ' + solicitudId + ' AND est2.id = ' + str(estadoAprobadoValidacion.id) + ' AND est1.nombre in ( ' + "'" + str(estadoSinStockAlmacen) + "'" + ',' + "'" + str(estadoConStockAlmacen) + "'" + ') AND  (sol."ordenCompra_id"= 0 OR  sol."ordenCompra_id" is null)  ORDER BY sol.item'
+
             cur.execute(comando)
             print(comando)
 
@@ -3850,4 +3911,112 @@ class Contrasena(TemplateView):
         print(context["SedeSeleccionada"])
 
         return context
+
+
+
+
+def AnularSolicitud(request, pk, item):
+
+    print("Entre anular solicitud" , pk)
+    print("Entre anular item", item)
+    pass
+
+    ## Consigo el listado de coordinadores
+
+    estadoRechazadoValidacion = EstadosValidacion.objects.get(nombre="RECHAZADO")
+    estadoPendienteValidacion = EstadosValidacion.objects.get(nombre="PENDIENTE")
+    estadoRechazadoAlmacen =   EstadosAlmacen.objects.get(nombre="RECHAZADO")
+
+    miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",password="BD_m3d1c4l")
+    cur = miConexion.cursor()
+    comando = "SELECT id  FROM public.solicitud_solicitudesdetalle sol WHERE sol.estadoReg = '" + "A'" + ' and sol.solicitud_id = ' + str(pk)    + ' and ( sol."estadosValidacion_id" = ' + str(estadoPendienteValidacion.id) + ' OR sol."estadosValidacion_id" = ' +  str(estadoRechazadoValidacion.id) + ' ) '
+    cur.execute(comando)
+    print(comando)
+
+    anulado = []
+
+    for id in cur.fetchall():
+        anulado.append({'id': id})
+
+
+    print("anulado = ", anulado)
+
+    miConexion.close()
+
+
+    if (anulado ==[]):
+        return HttpResponse("No esposible Anular la solicitud. Por favor revze.")
+    else:
+        # Aqui rutina de anulacion
+        miConexiont = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",   password="BD_m3d1c4l")
+        curt = miConexiont.cursor()
+
+        comando = "UPDATE solicitud_solicitudesdetalle sol set estadoreg = 'I' WHERE sol.solicitud_id = '" + str(pk) + "' AND sol.item = '" + str(item) + "' RETURNING id"
+
+        print(comando)
+        resultado = curt.execute(comando)
+        print("resultado =", resultado)
+        n = curt.rowcount
+        print("Registros commit = ", n)
+
+        miConexiont.commit()
+        solicitudId = curt.fetchone()[0]
+
+        print ("solicitudId Anulada = " , solicitudId)
+
+        return HttpResponse("Iten solicitud satistactoriamente ANULADA.")
+
+
+
+
+def AnularOrdenCompra(request, ordenCompra):
+
+    print("Entre anular ordenCompra " , ordenCompra)
+
+    pass
+
+    ## Consigo el listado de coordinadores
+
+    estadoRechazadoValidacion = EstadosValidacion.objects.get(nombre="RECHAZADO")
+    estadoPendienteValidacion = EstadosValidacion.objects.get(nombre="PENDIENTE")
+    estadoRechazadoAlmacen =   EstadosAlmacen.objects.get(nombre="RECHAZADO")
+
+    miConexion = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",password="BD_m3d1c4l")
+    cur = miConexion.cursor()
+    comando = 'UPDATE public.solicitud_ordenescompra ord SET "estadoReg" = ' + "'I'" + '  WHERE ord.id = '  + str(ordenCompra) + ' RETURNING id'
+    print(comando)
+    resultado = cur.execute(comando)
+
+    print("resultado =", resultado)
+    n = cur.rowcount
+    print("Registros commit = ", n)
+    miConexion.commit()
+    ordenCompraId = cur.fetchone()[0]
+    miConexion.close()
+
+
+    # Aqui rutina de anulacion
+    miConexiont = psycopg2.connect(host="192.168.0.237", database="bd_solicitudes0", port="5432", user="postgres",   password="BD_m3d1c4l")
+    curt = miConexiont.cursor()
+
+    comando = 'UPDATE public.solicitud_solicitudesdetalle sol set "estadoreg" = ' + "'I'" + ' ,"ordenCompra_id" = null WHERE  sol."ordenCompra_id"  = ' + str(ordenCompra)  + ' AND sol.estadoreg = ' + "'A'" + '  RETURNING id'
+
+    print(comando)
+    resultado = curt.execute(comando)
+    print("resultado =", resultado)
+    n = curt.rowcount
+    print("Registros commit = ", n)
+    miConexiont.commit()
+    solicitudId = curt.fetchone()[0]
+
+    print ("Orden de Compra Anulada = " , ordenCompra)
+
+    return HttpResponse("! Orden de Compra satistactoriamente ANULADA. !")
+
+
+
+
+
+
+
 

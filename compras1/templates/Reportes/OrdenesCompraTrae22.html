@@ -32,9 +32,9 @@
   if(mes<10)
     mes='0'+mes //agrega cero si el menor de 10
 
-   document.getElementById('fechaElab').value=ano+"-"+mes+"-"+dia + " " +hora+":"+minutos+":"+ segs;
-   document.getElementById('fechaRevi').value=ano+"-"+mes+"-"+dia + " " +hora+":"+minutos+":"+ segs;
-   document.getElementById('fechaApro').value=ano+"-"+mes+"-"+dia + " " +hora+":"+minutos+":"+ segs;
+ //   document.getElementById('fechaElab').value=ano+"-"+mes+"-"+dia + " " +hora+":"+minutos+":"+ segs;
+ //  document.getElementById('fechaRevi').value=ano+"-"+mes+"-"+dia + " " +hora+":"+minutos+":"+ segs;
+ //  document.getElementById('fechaApro').value=ano+"-"+mes+"-"+dia + " " +hora+":"+minutos+":"+ segs;
 
 
 
@@ -121,15 +121,17 @@ function cargaImagen()
                 <div class="card-header">
                     <div class="row">
                         <div class="row">
-                            <div class="col-sm-4" >
-
-                               <h6> FECHA DE ELABORACION: <span class="small"> <input type="datetime-local" id="fechaElab" name="fechaElab" value={{form.fechaElab}}> </span></h6>
+                            <div class="col-sm-4"  >
+                                 <h6> FECHA DE ELABORACION: <span class="small" >{{form.fechaElab}}</span> </h6>
+                             <!--  <h6> FECHA DE ELABORACION: <span class="small"> <input type="datetime-local" id="fechaElab" name="fechaElab" value={{form.fechaElab}}> </span></h6> -->
                             </div>
                             <div class="col-sm-4">
-                                <h6>FECHA DE REVISION: <span class="small"> <input type="datetime-local" id="fechaRevi" name="fechaRevi" value={{form.fechaRevi}}> </span></h6>
+                                 <h6>FECHA DE REVISION: <span class="small">{{form.fechaRevi}}</span> </h6>
+                             <!--   <h6>FECHA DE REVISION: <span class="small"> <input type="datetime-local" id="fechaRevi" name="fechaRevi" value={{form.fechaRevi}}> </span></h6> -->
                             </div>
                             <div class="col-sm-3">
-                                <h6>FECHA APROBACION: <span class="small"><input type="datetime-local" id="fechaApro" name="fechaApro" value={{form.fechaApro}}> </span></h6>
+                              <h6>APROBACION: <span class="small">{{form.fechaApro}}</span></h6>
+                             <!--   <h6>FECHA APROBACION: <span class="small"><input type="datetime-local" id="fechaApro" name="fechaApro" value={{form.fechaApro}}> </span></h6> -->
                             </div>
                             <div class="col-sm-1">
                                 <h6>ESTADO: <span class="small">{{form.estadoOrden}}</span></h6>
@@ -146,8 +148,8 @@ function cargaImagen()
                                 <h6>REVIZO: <span contentEditable="false"  class="small">{{form.revizo}}</span></h6>
                                     </div>
                             </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-3">
+
+                            <div class="col-md-4">
                                 <h6>APROBO: <span class="small">{{form.aprobo}}</span></h6>
                             </div>
                          </div>
@@ -291,22 +293,7 @@ function cargaImagen()
                             <div class="col-md-3" >
                             <h6>APROBO: <span class="small">{{form.aproboCompraStaff}}</span></h6>
                         </div>
-                         Adjunto...
-                        <a href="file:w:OC_28.xlsx">Descarga...</a>
 
-
-                        <!--
-                        <div class="col-md-2" >
-                            <h6>Soportes: <span class="small">
-                             <figure class="figure">
-                                <img src="{% static '/img/CSV.JPG' %}" class="figure-img img-fluid rounded" style="height:30px;"  alt="..." onclick="cargaImagenMal()">
-                                <figcaption class="figure-caption text-right"> <a href="{{form.adjuntoCompras}}">Descarga...</a>
-                            </figcaption>
-                            </figure>
-                            </span></h6>
-                        </div>
-                    </div>
-                    -->
 
 
                 </div>
